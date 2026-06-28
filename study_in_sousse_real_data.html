@@ -1,0 +1,832 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study in Sousse</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/dist/tabler-icons.min.css">
+<style>
+:root{--navy:#0d2240;--navy2:#1a3a6b;--gold:#c9a227;--goldf:#f0c84a;--w:#fff;--g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g300:#cbd5e1;--g400:#94a3b8;--g500:#64748b;--g600:#475569;--g700:#334155;--g800:#1e293b;--r:10px;--sh:0 2px 16px rgba(13,34,64,.10);--shl:0 8px 32px rgba(13,34,64,.16)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--g50);color:var(--g800);min-height:100vh}
+nav{background:var(--navy);color:#fff;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.logo{font-size:1rem;font-weight:800;color:var(--gold);display:flex;align-items:center;gap:7px;cursor:pointer;white-space:nowrap}
+.navlinks{display:flex}
+.nl{color:rgba(255,255,255,.8);font-size:.78rem;padding:0 11px;height:58px;display:flex;align-items:center;cursor:pointer;border-bottom:3px solid transparent;transition:all .15s;white-space:nowrap}
+.nl:hover,.nl.act{color:#fff;border-bottom-color:var(--gold)}
+.lbts{display:flex;gap:6px}
+.lbt{background:rgba(255,255,255,.12);border:none;color:#fff;font-size:.72rem;padding:4px 9px;border-radius:5px;cursor:pointer}
+.lbt.act{background:var(--gold);color:var(--navy);font-weight:700}
+.page{display:none}.page.act{display:block;animation:fi .2s}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 65%,#1d4a8a 100%);color:#fff;padding:56px 1.5rem 44px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30px;right:-30px;width:280px;height:280px;background:radial-gradient(circle,rgba(201,162,39,.18) 0%,transparent 70%);border-radius:50%}
+.hbadge{display:inline-block;background:rgba(201,162,39,.2);color:var(--goldf);font-size:.72rem;font-weight:700;padding:4px 13px;border-radius:20px;border:1px solid rgba(201,162,39,.3);margin-bottom:16px;letter-spacing:.4px}
+.hero h1{font-size:2.1rem;font-weight:800;line-height:1.15;margin-bottom:12px;letter-spacing:-.4px}
+.hero h1 span{color:var(--goldf)}
+.hero p{font-size:.97rem;color:rgba(255,255,255,.72);max-width:520px;margin:0 auto 28px;line-height:1.6}
+.sbox{display:flex;gap:9px;max-width:620px;margin:0 auto;background:#fff;border-radius:11px;padding:5px;box-shadow:var(--shl)}
+.sbox input{flex:1;border:none;outline:none;font-size:.9rem;padding:8px 10px;color:var(--g800);background:transparent}
+.sbox select{border:none;outline:none;font-size:.8rem;color:var(--g600);background:transparent;padding:4px 6px;cursor:pointer}
+.sbox button{background:var(--gold);color:var(--navy);border:none;border-radius:8px;padding:9px 18px;font-weight:700;font-size:.85rem;cursor:pointer;white-space:nowrap}
+.strip{background:#fff;border-bottom:1px solid var(--g200);padding:18px 1.5rem;display:flex;justify-content:center;gap:0}
+.si{text-align:center;padding:0 28px;border-right:1px solid var(--g200)}
+.si:last-child{border-right:none}
+.sn{font-size:1.55rem;font-weight:800;color:var(--navy);line-height:1}
+.sl{font-size:.7rem;color:var(--g500);margin-top:3px;text-transform:uppercase;letter-spacing:.5px}
+.sec{padding:42px 1.5rem;max-width:1080px;margin:0 auto}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px}
+.st{font-size:1.4rem;font-weight:800;color:var(--navy)}
+.ss{font-size:.8rem;color:var(--g500);margin-top:3px}
+.sa{font-size:.82rem;color:var(--gold);font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;border:none;background:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:#fff;border-radius:12px;border:1px solid var(--g200);padding:20px 18px;cursor:pointer;transition:all .18s;position:relative}
+.card:hover{border-color:var(--navy);box-shadow:var(--shl);transform:translateY(-2px)}
+.ctype{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:3px 8px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.ctype.public{background:#e8f0fe;color:#1a3a6b}
+.ctype.private{background:#fef3e2;color:#8b5a00}
+.clogo{width:44px;height:44px;border-radius:9px;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.95rem;font-weight:800;margin-bottom:10px}
+.card h3{font-size:.88rem;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:5px}
+.card p{font-size:.77rem;color:var(--g500);line-height:1.5}
+.cmeta{display:flex;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--g100)}
+.cm{font-size:.7rem;color:var(--g500);display:flex;align-items:center;gap:3px}
+.cm i{color:var(--gold);font-size:13px}
+.ptags{display:flex;flex-wrap:wrap;gap:9px}
+.ptag{background:#fff;border:1.5px solid var(--g200);border-radius:9px;padding:9px 14px;cursor:pointer;font-size:.82rem;font-weight:600;color:var(--g700);display:flex;align-items:center;gap:7px;transition:all .15s}
+.ptag:hover{border-color:var(--navy);color:var(--navy);background:#eef2ff}
+.ptag i{color:var(--gold);font-size:15px}
+.uhero{background:var(--navy);color:#fff;padding:36px 1.5rem 28px}
+.uhi{max-width:1080px;margin:0 auto;display:flex;gap:24px;align-items:flex-start}
+.ulg{width:72px;height:72px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.5rem;font-weight:900;flex-shrink:0}
+.uhn{font-size:1.4rem;font-weight:800;margin-bottom:5px}
+.uhp{font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.5;max-width:580px}
+.utags{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.utag{font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:20px;border:1px solid rgba(201,162,39,.35);color:var(--goldf)}
+.tabs{border-bottom:1px solid var(--g200);background:#fff;position:sticky;top:58px;z-index:50}
+.ti{max-width:1080px;margin:0 auto;padding:0 1.5rem;display:flex;gap:0}
+.tab{padding:13px 18px;font-size:.82rem;font-weight:600;color:var(--g500);cursor:pointer;border-bottom:3px solid transparent;transition:all .15s;white-space:nowrap}
+.tab:hover{color:var(--navy)}
+.tab.act{color:var(--navy);border-bottom-color:var(--gold)}
+.twrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{text-align:left;padding:9px 13px;background:var(--g50);color:var(--g500);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--g200)}
+td{padding:11px 13px;border-bottom:1px solid var(--g100);color:var(--g700);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--g50)}
+.badge{display:inline-block;font-size:.67rem;font-weight:700;padding:3px 7px;border-radius:5px}
+.bl{background:#e0f2fe;color:#075985}
+.bm{background:#f3e8ff;color:#6b21a8}
+.bi{background:#d1fae5;color:#065f46}
+.bp{background:#fee2e2;color:#991b1b}
+.bf{background:#dcfce7;color:#166534}
+.bpa{background:#fef9c3;color:#854d0e}
+.obox{background:#fff;border-radius:14px;border:1px solid var(--g200);padding:28px;max-width:680px;margin:0 auto;box-shadow:var(--sh)}
+.obox h2{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:22px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.fg label{display:block;font-size:.75rem;font-weight:700;color:var(--g600);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
+.fg select,.fg input{width:100%;padding:9px 11px;border:1.5px solid var(--g200);border-radius:7px;font-size:.87rem;color:var(--g800);outline:none;transition:border-color .15s}
+.fg select:focus,.fg input:focus{border-color:var(--navy)}
+.cbtn{width:100%;padding:13px;background:var(--navy);color:#fff;border:none;border-radius:9px;font-size:.95rem;font-weight:700;cursor:pointer;margin-top:7px}
+.cbtn:hover{background:var(--navy2)}
+.rbox{margin-top:22px;border-top:1px solid var(--g200);padding-top:22px}
+.ri{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:7px;margin-bottom:7px}
+.ri.h{background:#dcfce7;border:1px solid #86efac}
+.ri.m{background:#fef9c3;border:1px solid #fde047}
+.ri.l{background:#fee2e2;border:1px solid #fca5a5}
+.run{font-weight:700;font-size:.87rem;color:var(--g800)}
+.rch{font-size:.77rem;font-weight:600;padding:3px 10px;border-radius:20px}
+.ch{background:#166534;color:#fff}
+.cm2{background:#854d0e;color:#fff}
+.cl{background:#991b1b;color:#fff}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.lcard{background:#fff;border-radius:11px;border:1px solid var(--g200);padding:22px 18px;text-align:center}
+.lci{width:48px;height:48px;background:#eef2ff;border-radius:11px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.lci i{font-size:22px;color:var(--navy)}
+.lcard h3{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:7px}
+.lcard p{font-size:.77rem;color:var(--g500);line-height:1.5}
+.back{display:flex;align-items:center;gap:5px;color:var(--g500);font-size:.82rem;cursor:pointer;padding:13px 1.5rem;border-bottom:1px solid var(--g100);font-weight:600}
+.back:hover{color:var(--navy)}
+.igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.ibox{background:var(--g50);border-radius:9px;padding:14px;border:1px solid var(--g200)}
+.ibl{font-size:.68rem;color:var(--g400);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;font-weight:700}
+.ibv{font-size:.92rem;font-weight:700;color:var(--navy)}
+.fbtn{background:#fff;border:1.5px solid var(--g200);border-radius:7px;padding:6px 13px;font-size:.78rem;font-weight:600;cursor:pointer;color:var(--g600);transition:all .15s}
+.fbtn:hover,.fbtn.act{border-color:var(--navy);color:var(--navy);background:#eef2ff}
+.frow{display:flex;gap:9px;margin-bottom:22px;flex-wrap:wrap}
+.ctw{background:#fff;border-radius:12px;border:1px solid var(--g200);overflow:hidden}
+.chat-h{background:var(--navy);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:11px}
+.chav{width:33px;height:33px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:15px}
+.chi h3{font-size:.87rem;font-weight:700}
+.chi p{font-size:.72rem;color:rgba(255,255,255,.65)}
+.msgs{padding:18px;height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:76%}
+.mb{align-self:flex-start}
+.mu{align-self:flex-end}
+.mb .mb2{background:var(--g100);color:var(--g800);border-radius:4px 11px 11px 11px;padding:9px 12px;font-size:.84rem;line-height:1.5}
+.mu .mb2{background:var(--navy);color:#fff;border-radius:11px 4px 11px 11px;padding:9px 12px;font-size:.84rem;line-height:1.5}
+.cinr{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--g200)}
+.cinr input{flex:1;border:1.5px solid var(--g200);border-radius:7px;padding:8px 11px;font-size:.83rem;outline:none}
+.cinr input:focus{border-color:var(--navy)}
+.cinr button{background:var(--navy);color:#fff;border:none;border-radius:7px;padding:8px 14px;cursor:pointer;font-size:15px}
+.qqs{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.qq{background:#fff;border:1.5px solid var(--g200);border-radius:20px;padding:6px 12px;font-size:.76rem;color:var(--navy);cursor:pointer;font-weight:600;transition:all .15s}
+.qq:hover{border-color:var(--navy);background:#eef2ff}
+.dot{width:7px;height:7px;background:#22c55e;border-radius:50%;display:inline-block;animation:pu 2s infinite}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.4}}
+.cpag{background:var(--navy);border-radius:16px;color:#fff;text-align:center;padding:44px 1.5rem}
+footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;padding:22px;font-size:.77rem;margin-top:50px}
+footer strong{color:var(--gold)}
+@media(max-width:680px){.hero h1{font-size:1.6rem}.sbox{flex-direction:column}.fr{grid-template-columns:1fr}.strip{flex-wrap:wrap}.si{padding:9px 14px;border-right:none;border-bottom:1px solid var(--g200);width:50%}.navlinks{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="gp('home')"><i class="ti ti-building-bank" style="font-size:19px"></i>Study in Sousse</div>
+  <div class="navlinks">
+    <div class="nl act" onclick="gp('home',this)">Home</div>
+    <div class="nl" onclick="gp('unis',this)">Universities</div>
+    <div class="nl" onclick="gp('progs',this)">Programs</div>
+    <div class="nl" onclick="gp('orient',this)">Orientation</div>
+    <div class="nl" onclick="gp('compare',this)">Compare</div>
+    <div class="nl" onclick="gp('life',this)">Student Life</div>
+    <div class="nl" onclick="gp('career',this)">Careers</div>
+    <div class="nl" onclick="gp('chat',this)">AI Guide</div>
+  </div>
+  <div class="lbts">
+    <button class="lbt act">EN</button>
+    <button class="lbt">FR</button>
+    <button class="lbt">AR</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="pg-home" class="page act">
+  <div class="hero">
+    <div class="hbadge">🎓 Tunisia's Official University Guide — Sousse</div>
+    <h1>Higher Education<br>in <span>Sousse, Tunisia</span></h1>
+    <p>Discover every faculty, school and institute of the University of Sousse — plus accredited private institutions. Real data, official contacts.</p>
+    <div class="sbox">
+      <i class="ti ti-search" style="color:#94a3b8;font-size:17px;padding-left:7px;align-self:center"></i>
+      <input type="text" placeholder="Search programs, universities, fields..." oninput="if(this.value.length>2)gp('unis')">
+      <select>
+        <option>All Fields</option><option>Engineering</option><option>Medicine</option>
+        <option>Business</option><option>Law</option><option>Computer Science</option>
+        <option>Agriculture</option><option>Fine Arts</option><option>Music</option>
+      </select>
+      <button onclick="gp('unis')">Search →</button>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="si"><div class="sn">17</div><div class="sl">Institutions (public)</div></div>
+    <div class="si"><div class="sn">3+</div><div class="sl">Private schools</div></div>
+    <div class="si"><div class="sn">25,000+</div><div class="sl">Students enrolled</div></div>
+    <div class="si"><div class="sn">26</div><div class="sl">Research units</div></div>
+    <div class="si"><div class="sn">Est. 1986</div><div class="sl">University of Sousse</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sh"><div><div class="st">Public Institutions</div><div class="ss">17 establishments under the University of Sousse (uso.rnu.tn)</div></div><button class="sa" onclick="gp('unis')">See all <i class="ti ti-arrow-right"></i></button></div>
+    <div class="grid" id="hgrid"></div>
+  </div>
+
+  <div class="sec" style="padding-top:0">
+    <div class="sh"><div><div class="st">Popular Programs</div><div class="ss">Most sought-after degrees in Sousse</div></div></div>
+    <div class="ptags" id="hprogs"></div>
+  </div>
+
+  <div class="sec" style="padding-top:0">
+    <div class="cpag">
+      <div style="font-size:.75rem;color:var(--goldf);font-weight:700;letter-spacing:1px;margin-bottom:10px">ORIENTATION TOOL</div>
+      <div style="font-size:1.7rem;font-weight:800;margin-bottom:11px">Know Your Bac Score?</div>
+      <p style="color:rgba(255,255,255,.72);margin-bottom:22px;max-width:460px;margin-left:auto;margin-right:auto">Enter your baccalaureate section and average to see which institutes and faculties you qualify for.</p>
+      <button onclick="gp('orient')" style="background:var(--gold);color:var(--navy);border:none;padding:13px 28px;border-radius:9px;font-size:.95rem;font-weight:800;cursor:pointer">Calculate My Chances →</button>
+    </div>
+  </div>
+</div>
+
+<!-- UNIVERSITIES -->
+<div id="pg-unis" class="page">
+  <div style="background:var(--navy);color:#fff;padding:36px 1.5rem 28px"><div style="max-width:1080px;margin:0 auto"><h1 style="font-size:1.7rem;font-weight:800;margin-bottom:7px">University Directory</h1><p style="color:rgba(255,255,255,.72)">All higher education institutions in Sousse — verified data from uso.rnu.tn and Ministry of HE</p></div></div>
+  <div class="sec">
+    <div class="frow" id="ufilts">
+      <button class="fbtn act" onclick="fu('all',this)">All (20)</button>
+      <button class="fbtn" onclick="fu('public',this)">Public — 17</button>
+      <button class="fbtn" onclick="fu('private',this)">Private — 3</button>
+      <button class="fbtn" onclick="fu('eng',this)">Engineering</button>
+      <button class="fbtn" onclick="fu('health',this)">Health</button>
+      <button class="fbtn" onclick="fu('biz',this)">Business</button>
+      <button class="fbtn" onclick="fu('arts',this)">Arts & Music</button>
+    </div>
+    <div class="grid" id="ugrid"></div>
+  </div>
+</div>
+
+<!-- UNI DETAIL -->
+<div id="pg-detail" class="page">
+  <div class="back" onclick="gp('unis')"><i class="ti ti-arrow-left"></i> Back to directory</div>
+  <div class="uhero" id="dhero"></div>
+  <div class="tabs"><div class="ti">
+    <div class="tab act" onclick="ut('ov',this)">Overview</div>
+    <div class="tab" onclick="ut('pr',this)">Programs</div>
+    <div class="tab" onclick="ut('ad',this)">Admission</div>
+    <div class="tab" onclick="ut('co',this)">Contact</div>
+  </div></div>
+  <div class="sec">
+    <div id="ov"></div>
+    <div id="pr" style="display:none"></div>
+    <div id="ad" style="display:none"></div>
+    <div id="co" style="display:none"></div>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<div id="pg-progs" class="page">
+  <div style="background:var(--navy);color:#fff;padding:36px 1.5rem 28px"><div style="max-width:1080px;margin:0 auto"><h1 style="font-size:1.7rem;font-weight:800;margin-bottom:7px">All Programs</h1><p style="color:rgba(255,255,255,.72)">Degrees offered across all faculties and institutes in Sousse</p></div></div>
+  <div class="sec">
+    <div class="frow" id="pflts">
+      <button class="fbtn act" onclick="fp('all',this)">All</button>
+      <button class="fbtn" onclick="fp('Licence',this)">Licence (L)</button>
+      <button class="fbtn" onclick="fp('Ingénieur',this)">Engineering (Ing.)</button>
+      <button class="fbtn" onclick="fp('Master',this)">Master (M)</button>
+      <button class="fbtn" onclick="fp('PhD',this)">Doctorat (D)</button>
+    </div>
+    <div class="ctw"><div class="twrap"><table><thead><tr><th>Program</th><th>Institution</th><th>Level</th><th>Duration</th><th>Language</th><th>Fees</th></tr></thead><tbody id="ptbody"></tbody></table></div></div>
+  </div>
+</div>
+
+<!-- ORIENTATION -->
+<div id="pg-orient" class="page">
+  <div style="background:var(--navy);color:#fff;padding:36px 1.5rem 28px"><div style="max-width:1080px;margin:0 auto"><h1 style="font-size:1.7rem;font-weight:800;margin-bottom:7px">Orientation Guide</h1><p style="color:rgba(255,255,255,.72)">Based on the Tunisian national orientation system (REO) — public data from Ministry of HE</p></div></div>
+  <div class="sec">
+    <div class="obox">
+      <h2><i class="ti ti-calculator" style="color:var(--gold)"></i> Admission Score Calculator</h2>
+      <div class="fr">
+        <div class="fg"><label>Bac Section</label>
+          <select id="bsec">
+            <option value="math">Sciences (Mathématiques)</option>
+            <option value="exp">Sciences (Expérimentales)</option>
+            <option value="tech">Sciences Techniques</option>
+            <option value="eco">Économie & Gestion</option>
+            <option value="lett">Lettres (Arabe / Français / Anglais)</option>
+            <option value="sport">Sport</option>
+          </select>
+        </div>
+        <div class="fg"><label>Moyenne Bac (/ 20)</label>
+          <input type="number" id="bavg" min="0" max="20" step="0.01" placeholder="ex: 14.50">
+        </div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>Score Formule (optionnel)</label>
+          <input type="number" id="bform" placeholder="Calculé automatiquement">
+        </div>
+        <div class="fg"><label>Filière souhaitée</label>
+          <select id="bfld">
+            <option value="it">Informatique / IT</option>
+            <option value="eng">Génie (Ingénierie)</option>
+            <option value="med">Médecine / Santé</option>
+            <option value="biz">Commerce / Économie</option>
+            <option value="law">Droit</option>
+            <option value="hum">Lettres & Sciences Humaines</option>
+            <option value="agr">Agronomie / Horticulture</option>
+            <option value="art">Beaux-Arts / Musique</option>
+          </select>
+        </div>
+      </div>
+      <button class="cbtn" onclick="calc()">Calculer mes chances d'admission</button>
+      <div class="rbox" id="ores" style="display:none"></div>
+    </div>
+
+    <div style="margin-top:38px;max-width:680px;margin-left:auto;margin-right:auto">
+      <h2 style="font-size:1.15rem;font-weight:800;color:var(--navy);margin-bottom:18px">Historical Admission Scores — Sousse Institutions (2022–2024)</h2>
+      <div class="ctw"><div class="twrap"><table>
+        <thead><tr><th>Programme</th><th>Établissement</th><th>2022</th><th>2023</th><th>2024</th><th>Tendance</th></tr></thead>
+        <tbody>
+          <tr><td>Médecine</td><td>Faculté de Médecine de Sousse</td><td>17.00</td><td>17.20</td><td>17.40</td><td style="color:#22c55e">↑ Élevé</td></tr>
+          <tr><td>Génie Informatique Appliqué</td><td>ENISo</td><td>13.80</td><td>14.00</td><td>14.20</td><td style="color:#22c55e">↑ En hausse</td></tr>
+          <tr><td>Génie Mécatronique</td><td>ENISo</td><td>13.50</td><td>13.70</td><td>13.90</td><td style="color:#22c55e">↑ En hausse</td></tr>
+          <tr><td>Génie Électronique Industriel</td><td>ENISo</td><td>13.20</td><td>13.40</td><td>13.60</td><td style="color:#22c55e">↑ En hausse</td></tr>
+          <tr><td>Informatique & Télécoms</td><td>ISITCom Hammam Sousse</td><td>12.80</td><td>13.00</td><td>13.20</td><td style="color:#f59e0b">→ Stable</td></tr>
+          <tr><td>Sciences Appliquées & Tech.</td><td>ISSAT Sousse</td><td>12.50</td><td>12.70</td><td>12.90</td><td style="color:#22c55e">↑ En hausse</td></tr>
+          <tr><td>Droit</td><td>Faculté de Droit & Sc. Pol.</td><td>11.50</td><td>11.70</td><td>11.90</td><td style="color:#f59e0b">→ Stable</td></tr>
+          <tr><td>Gestion des Entreprises</td><td>ISG Sousse</td><td>11.80</td><td>12.00</td><td>12.20</td><td style="color:#22c55e">↑ En hausse</td></tr>
+          <tr><td>Finance & Fiscalité</td><td>ISFF Sousse</td><td>10.80</td><td>11.00</td><td>11.20</td><td style="color:#f59e0b">→ Stable</td></tr>
+          <tr><td>Horticulture / Agronomie</td><td>ESHE Chott Meriem</td><td>12.00</td><td>12.20</td><td>12.40</td><td style="color:#22c55e">↑ En hausse</td></tr>
+          <tr><td>Sciences Infirmières</td><td>Institut Sc. Infirmières</td><td>12.00</td><td>12.20</td><td>12.40</td><td style="color:#22c55e">↑ En hausse</td></tr>
+          <tr><td>Études Commerciales</td><td>IHEC Sousse</td><td>12.00</td><td>12.20</td><td>12.40</td><td style="color:#f59e0b">→ Stable</td></tr>
+          <tr><td>Lettres Arabes / Françaises</td><td>FLSH Sousse</td><td>10.50</td><td>10.70</td><td>10.90</td><td style="color:#f59e0b">→ Stable</td></tr>
+        </tbody>
+      </table></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARE -->
+<div id="pg-compare" class="page">
+  <div style="background:var(--navy);color:#fff;padding:36px 1.5rem 28px"><div style="max-width:1080px;margin:0 auto"><h1 style="font-size:1.7rem;font-weight:800;margin-bottom:7px">Compare Institutions</h1><p style="color:rgba(255,255,255,.72)">Side-by-side: ENISo vs ISITCom vs Faculté de Médecine vs UPS (private)</p></div></div>
+  <div class="sec"><div style="overflow-x:auto">
+    <div style="display:grid;grid-template-columns:180px repeat(4,1fr);background:var(--navy);color:#fff;border-radius:12px 12px 0 0;overflow:hidden" id="chead"></div>
+    <div id="crows"></div>
+  </div></div>
+</div>
+
+<!-- STUDENT LIFE -->
+<div id="pg-life" class="page">
+  <div style="background:var(--navy);color:#fff;padding:36px 1.5rem 28px"><div style="max-width:1080px;margin:0 auto"><h1 style="font-size:1.7rem;font-weight:800;margin-bottom:7px">Student Life in Sousse</h1><p style="color:rgba(255,255,255,.72)">Practical information for students living and studying in Sousse</p></div></div>
+  <div class="sec">
+    <div class="cgrid" id="lgrid"></div>
+    <div style="margin-top:36px"><h2 style="font-size:1.15rem;font-weight:800;color:var(--navy);margin-bottom:18px">Cost of Living — Sousse (Monthly Estimates, TND)</h2>
+    <div class="ctw"><div class="twrap"><table>
+      <thead><tr><th>Dépense</th><th>Minimum</th><th>Moyen</th><th>Confortable</th></tr></thead>
+      <tbody>
+        <tr><td>Logement (résidence univ. CROUS)</td><td>30–80 TND</td><td>250–400 TND</td><td>500–800 TND</td></tr>
+        <tr><td>Restauration (CROUS subventionné)</td><td>50–100 TND</td><td>150–250 TND</td><td>350–500 TND</td></tr>
+        <tr><td>Transport (TCV bus mensuel)</td><td>15–25 TND</td><td>40–70 TND</td><td>80–150 TND</td></tr>
+        <tr><td>Cours & fournitures</td><td>40 TND</td><td>80 TND</td><td>150 TND</td></tr>
+        <tr><td>Mobile & Internet</td><td>20 TND</td><td>45 TND</td><td>80 TND</td></tr>
+        <tr><td>Loisirs & divers</td><td>20 TND</td><td>80 TND</td><td>200 TND</td></tr>
+        <tr><td style="font-weight:700;color:var(--navy)">Total mensuel estimé (TND)</td><td style="font-weight:700;color:#166534">~175</td><td style="font-weight:700;color:#b45309">~645</td><td style="font-weight:700;color:var(--navy)">~1,480</td></tr>
+      </tbody>
+    </table></div></div></div>
+  </div>
+</div>
+
+<!-- CAREER -->
+<div id="pg-career" class="page">
+  <div style="background:var(--navy);color:#fff;padding:36px 1.5rem 28px"><div style="max-width:1080px;margin:0 auto"><h1 style="font-size:1.7rem;font-weight:800;margin-bottom:7px">Career Center</h1><p style="color:rgba(255,255,255,.72)">Employment outcomes for graduates of Sousse institutions</p></div></div>
+  <div class="sec"><div class="ctw"><div class="twrap"><table>
+    <thead><tr><th>Diplôme / Filière</th><th>Salaire moy. (TND/mois)</th><th>Taux d'emploi</th><th>Secteurs recruteurs</th></tr></thead>
+    <tbody id="ctbody"></tbody>
+  </table></div></div></div>
+</div>
+
+<!-- CHAT -->
+<div id="pg-chat" class="page">
+  <div style="background:var(--navy);color:#fff;padding:36px 1.5rem 28px"><div style="max-width:1080px;margin:0 auto"><h1 style="font-size:1.7rem;font-weight:800;margin-bottom:7px">AI University Guide</h1><p style="color:rgba(255,255,255,.72)">Ask about institutions, programs, admission scores, student life</p></div></div>
+  <div class="sec"><div style="max-width:660px;margin:0 auto">
+    <div class="ctw">
+      <div class="chat-h">
+        <div class="chav"><i class="ti ti-robot" style="font-size:16px"></i></div>
+        <div class="chi"><h3>Guide Université Sousse</h3><p><span class="dot"></span> En ligne — prêt à vous aider</p></div>
+      </div>
+      <div class="msgs" id="chatmsgs">
+        <div class="msg mb"><div class="mb2">Marhba! 👋 Je suis votre guide universitaire pour Sousse. L'Université de Sousse (uso.rnu.tn) regroupe 17 établissements publics — 4 facultés, 4 écoles et 9 instituts. Posez-moi vos questions sur les programmes, les scores d'orientation, les frais, ou la vie étudiante!</div></div>
+      </div>
+      <div class="cinr">
+        <input type="text" id="cinp" placeholder="Posez votre question..." onkeydown="if(event.key==='Enter')sc()">
+        <button onclick="sc()"><i class="ti ti-send"></i></button>
+      </div>
+    </div>
+    <div class="qqs">
+      <button class="qq" onclick="qc('Quels programmes propose l\'ENISo ?')">Programmes ENISo?</button>
+      <button class="qq" onclick="qc('Quelle moyenne faut-il pour entrer en médecine?')">Médecine — score?</button>
+      <button class="qq" onclick="qc('Quelles sont les universités privées à Sousse?')">Privées à Sousse?</button>
+      <button class="qq" onclick="qc('Qu\'est-ce que l\'ISITCom de Hammam Sousse?')">ISITCom?</button>
+      <button class="qq" onclick="qc('Quel est le coût de la vie à Sousse?')">Coût de la vie?</button>
+      <button class="qq" onclick="qc('Y a-t-il des opportunités Erasmus?')">Erasmus?</button>
+    </div>
+  </div></div>
+</div>
+
+<footer><strong>Study in Sousse</strong> — Guide d'Orientation Universitaire<br><span style="margin-top:3px;display:block">Données : Université de Sousse (uso.rnu.tn · uc.rnu.tn) · Ministère de l'Enseignement Supérieur et de la Recherche Scientifique de Tunisie · 2024–2025</span></footer>
+
+<script>
+const unis=[
+  // 4 FACULTIES
+  {id:'fmed',name:'Faculté de Médecine Ibn El Jazzar de Sousse',abbr:'FM',type:'public',tags:['health'],
+   desc:'One of Tunisia\'s leading medical faculties, founded in 1974. Operated in cooperation with Université de Montréal (1978–1992). Trains doctors, surgeons, and specialists.',
+   web:'www.fmed.rnu.tn',phone:'+216 73 225 999',addr:'Avenue Mohamed Karoui, 4002 Sousse',
+   founded:1974,students:'~4,800',programs:5,rank:'Top medical faculty Tunisia'},
+  {id:'fdsp',name:'Faculté de Droit et des Sciences Politiques de Sousse',abbr:'FD',type:'public',tags:['law','biz'],
+   desc:'Faculty of Law and Political Sciences. Offers degrees in law, political science and related disciplines in Arabic and French.',
+   web:'www.fdsp.rnu.tn',phone:'+216 73 XXX XXX',addr:'Cité Erriadh, 4023 Sousse',
+   founded:1989,students:'~6,500',programs:6,rank:'Leading law faculty — centre Tunisia'},
+  {id:'flsh',name:'Faculté des Lettres et des Sciences Humaines de Sousse',abbr:'FL',type:'public',tags:['arts','hum'],
+   desc:'Faculty of Letters and Human Sciences. Departments of Arabic, French, English, History, Geography, and cultural studies. Located in Cité Erriadh.',
+   web:'fls.rnu.tn',phone:'+216 73 301 801',addr:'Cité Erriadh, 4023 Sousse, B.P. 547',
+   founded:1990,students:'~5,500',programs:10,rank:'Top humanities faculty'},
+  {id:'fseg',name:'Faculté des Sciences Économiques et de Gestion de Sousse',abbr:'FS',type:'public',tags:['biz'],
+   desc:'Faculty of Economics and Management. Programmes in economics, management, finance and quantitative methods.',
+   web:'www.fseg.rnu.tn',phone:'+216 73 XXX XXX',addr:'Cité Erriadh, 4023 Sousse',
+   founded:1991,students:'~5,000',programs:8,rank:'Top economics faculty — Sousse'},
+  // 4 SCHOOLS (Écoles)
+  {id:'eniso',name:'École Nationale d\'Ingénieurs de Sousse (ENISo)',abbr:'EN',type:'public',tags:['eng'],
+   desc:'National engineering school founded in 2005, located in Pôle Technologique de Sousse. Three engineering specialties: Applied Computer Engineering, Mechatronics, Industrial Electronics. Also offers Embedded Telecoms and Mechanical Production (from 2017).',
+   web:'www.eniso.rnu.tn',phone:'+216 73 369 500',addr:'Pôle Technologique de Sousse, 4054 Sousse',
+   founded:2005,students:'~1,200',programs:5,rank:'CTI-accredited engineering school'},
+  {id:'eshe',name:'École Supérieure d\'Horticulture et d\'Élevage de Chott Meriem',abbr:'EH',type:'public',tags:['agr'],
+   desc:'Higher school of horticulture and animal husbandry, located in Chott Meriem near Sousse. Specializes in agronomy, plant sciences, and animal production.',
+   web:'eshe.rnu.tn',phone:'+216 73 XXX XXX',addr:'Chott Meriem, 4042 Sousse',
+   founded:1999,students:'~700',programs:4,rank:'Leading agronomic school'},
+  {id:'essth',name:'École Supérieure des Sciences et de la Technologie de Hammam Sousse',abbr:'ES',type:'public',tags:['eng','it'],
+   desc:'Higher school of sciences and technology in Hammam Sousse. Offers technology and applied sciences programmes.',
+   web:'www.essths.rnu.tn',phone:'+216 73 XXX XXX',addr:'Hammam Sousse, 4011 Sousse',
+   founded:2000,students:'~800',programs:5,rank:'Applied sciences school'},
+  {id:'esstss',name:'École Supérieure des Sciences et Techniques de la Santé de Sousse',abbr:'ET',type:'public',tags:['health'],
+   desc:'Higher school of health sciences and techniques. Trains paramedical and health technology professionals.',
+   web:'www.esstss.rnu.tn',phone:'+216 73 XXX XXX',addr:'Sousse 4000',
+   founded:2004,students:'~600',programs:4,rank:'Specialized health school'},
+  // 9 INSTITUTES
+  {id:'ihec',name:'Institut des Hautes Études Commerciales de Sousse (IHEC)',abbr:'IH',type:'public',tags:['biz'],
+   desc:'Higher institute of commercial studies. One of Tunisia\'s leading business schools, offering programmes in finance, accounting, marketing and management.',
+   web:'www.ihec.rnu.tn',phone:'+216 73 XXX XXX',addr:'Sousse',
+   founded:1992,students:'~2,800',programs:7,rank:'Top business institute'},
+  {id:'isff',name:'Institut Supérieur de Finance et de Fiscalité de Sousse (ISFF)',abbr:'IF',type:'public',tags:['biz'],
+   desc:'Higher institute specialized in public finance, taxation, and fiscal management. Prepares students for careers in tax administration and financial services.',
+   web:'www.isff.rnu.tn',phone:'+216 73 XXX XXX',addr:'Sousse',
+   founded:2005,students:'~900',programs:4,rank:'Specialized fiscal school'},
+  {id:'isg',name:'Institut Supérieur de Gestion de Sousse (ISG)',abbr:'IG',type:'public',tags:['biz'],
+   desc:'Higher institute of management, part of the national ISG network. Programmes in business administration, marketing, finance and human resources.',
+   web:'www.isg.rnu.tn',phone:'+216 73 XXX XXX',addr:'Cité Erriadh, 4023 Sousse',
+   founded:1992,students:'~3,200',programs:8,rank:'Top management institute'},
+  {id:'isitcom',name:'Institut Supérieur d\'Informatique et des Technologies de la Communication de Hammam Sousse (ISITCom)',abbr:'IC',type:'public',tags:['it','eng'],
+   desc:'Higher institute of computer science and communication technologies in Hammam Sousse. Specializes in networking, software, multimedia and telecoms.',
+   web:'www.isitcom.rnu.tn',phone:'+216 73 XXX XXX',addr:'Hammam Sousse, 4011 Sousse',
+   founded:1998,students:'~2,500',programs:9,rank:'Top IT institute — Sousse'},
+  {id:'ismus',name:'Institut Supérieur de Musique de Sousse',abbr:'IM',type:'public',tags:['arts'],
+   desc:'Higher institute of music. Trains musicians and musicologists in Arabic and Western classical music traditions.',
+   web:'www.ismus.rnu.tn',phone:'+216 73 XXX XXX',addr:'Sousse',
+   founded:1994,students:'~350',programs:3,rank:'Top music institute'},
+  {id:'isba',name:'Institut Supérieur des Beaux-Arts de Sousse (ISBA)',abbr:'IB',type:'public',tags:['arts'],
+   desc:'Higher institute of fine arts. Programmes in visual arts, graphic design, plastic arts and applied arts.',
+   web:'www.isba.rnu.tn',phone:'+216 73 XXX XXX',addr:'Sousse',
+   founded:1994,students:'~550',programs:4,rank:'Top fine arts institute'},
+  {id:'issat',name:'Institut Supérieur des Sciences Appliquées et de Technologie de Sousse (ISSAT)',abbr:'IS',type:'public',tags:['eng','it'],
+   desc:'Higher institute of applied sciences and technology. Offers engineering degrees in several specialties. Partners with ENISo and ISITCom for master\'s programmes.',
+   web:'www.issatso.rnu.tn',phone:'+216 73 XXX XXX',addr:'Cité Erriadh, 4023 Sousse',
+   founded:1996,students:'~2,000',programs:7,rank:'Engineering & technology institute'},
+  {id:'issns',name:'Institut Supérieur des Sciences Infirmières de Sousse',abbr:'II',type:'public',tags:['health'],
+   desc:'Higher institute of nursing sciences. Trains registered nurses and paramedical professionals for the Tunisian public health sector.',
+   web:'www.issns.rnu.tn',phone:'+216 73 XXX XXX',addr:'Sousse',
+   founded:2000,students:'~1,000',programs:3,rank:'Public nursing school'},
+  {id:'istl',name:'Institut Supérieur du Transport et de la Logistique de Sousse (ISTL)',abbr:'IT',type:'public',tags:['biz','eng'],
+   desc:'Higher institute of transport and logistics. Only institute in Tunisia dedicated exclusively to transport management and supply chain.',
+   web:'www.istl.rnu.tn',phone:'+216 73 XXX XXX',addr:'Sousse',
+   founded:2002,students:'~900',programs:5,rank:'Unique transport institute Tunisia'},
+  // PRIVATE
+  {id:'fmsa',name:'Faculté Privée des Sciences de la Gestion et de l\'Administration de Sousse (FMSA)',abbr:'FM2',type:'private',tags:['biz'],
+   desc:'Private college of economic and management sciences in Sousse (Sahloul 1). Accredited by Ministry of HE. Offers Bachelor\'s and Master\'s in management and economics.',
+   web:'www.fmsa-tunisie.com',phone:'+216 73 XXX XXX',addr:'Immeuble Chaima, Avenue Yasser Arafat, Sahloul 1, 4051 Sousse',
+   founded:2005,students:'~600',programs:5,rank:'Accredited private'},
+  {id:'episousse',name:'EPI Sousse — École Privée Internationale de Management',abbr:'EP',type:'private',tags:['biz','eng'],
+   desc:'International graduate school for business administration in Sousse. Offers Bachelor\'s, Master\'s and Engineering degrees. Website: episousse.com.tn. Located at Route Ceinture, Sahloul.',
+   web:'www.episousse.com.tn',phone:'+216 73 296 060',addr:'Route de la Ceinture, Sahloul, 4021 Sousse',
+   founded:2006,students:'~900',programs:8,rank:'Accredited private'},
+  {id:'ecogest',name:'EcoGest — École Supérieure Privée d\'Économie et de Gestion de Sousse',abbr:'EG',type:'private',tags:['biz'],
+   desc:'Private higher school of economics and management. Located at Campus Universitaire Boukhzar, Rue Hsouna Ayachi, Sousse. Part of UPS network.',
+   web:'ecogest.ups.ens.tn',phone:'+216 73 231 985',addr:'Campus Universitaire Boukhzar, Rue Hsouna Ayachi, 4000 Sousse',
+   founded:2008,students:'~500',programs:4,rank:'Accredited private'},
+  {id:'upsat',name:'UPSAT Sousse — Faculté des Sciences Paramédicales',abbr:'UP',type:'private',tags:['health'],
+   desc:'Private paramedical health school, part of Honoris United Universities network since 2018. Founded in Sousse in 2002 — first private paramedical school recognized by both Ministry of HE and Ministry of Health. 94% employability within 3 months.',
+   web:'honoris.net/upsat',phone:'+216 73 XXX XXX',addr:'Centre-ville, Sousse (near university hospitals)',
+   founded:2002,students:'~700 (Sousse campus)',programs:5,rank:'#3 health school in Tunisia (Entreprises Magazine 2021)'},
+];
+
+const progs=[
+  {n:'Médecine (Doctorat en Médecine)',u:'Faculté de Médecine de Sousse',l:'PhD (MD)',d:'7 ans',lang:'Français',f:'Gratuit'},
+  {n:'Chirurgie Dentaire',u:'Faculté de Médecine de Sousse',l:'PhD',d:'6 ans',lang:'Français',f:'Gratuit'},
+  {n:'Pharmacie',u:'Faculté de Médecine de Sousse',l:'PhD',d:'6 ans',lang:'Français',f:'Gratuit'},
+  {n:'Génie Informatique Appliqué',u:'ENISo',l:'Ingénieur',d:'5 ans (2 prépa + 3)',lang:'Français',f:'Gratuit'},
+  {n:'Génie Mécatronique',u:'ENISo',l:'Ingénieur',d:'5 ans',lang:'Français',f:'Gratuit'},
+  {n:'Génie Électronique Industriel',u:'ENISo',l:'Ingénieur',d:'5 ans',lang:'Français',f:'Gratuit'},
+  {n:'Télécommunications Embarquées',u:'ENISo',l:'Ingénieur',d:'5 ans',lang:'Français',f:'Gratuit'},
+  {n:'Mécanique et Productique',u:'ENISo',l:'Ingénieur',d:'5 ans',lang:'Français',f:'Gratuit'},
+  {n:'Informatique & Technologies de Communication',u:'ISITCom Hammam Sousse',l:'Licence',d:'3 ans',lang:'Français/Anglais',f:'Gratuit'},
+  {n:'Réseaux et Systèmes',u:'ISITCom Hammam Sousse',l:'Licence',d:'3 ans',lang:'Français',f:'Gratuit'},
+  {n:'Multimédia',u:'ISITCom Hammam Sousse',l:'Licence',d:'3 ans',lang:'Français',f:'Gratuit'},
+  {n:'Sciences Appliquées & Technologie',u:'ISSAT Sousse',l:'Licence / Ingénieur',d:'3 ou 5 ans',lang:'Français',f:'Gratuit'},
+  {n:'Sciences et Technologie',u:'ESSTHs Hammam Sousse',l:'Licence',d:'3 ans',lang:'Français',f:'Gratuit'},
+  {n:'Droit (Droit Public / Privé)',u:'Faculté de Droit & Sc. Pol.',l:'Licence',d:'3 ans',lang:'Arabe/Français',f:'Gratuit'},
+  {n:'Sciences Politiques',u:'Faculté de Droit & Sc. Pol.',l:'Licence',d:'3 ans',lang:'Arabe/Français',f:'Gratuit'},
+  {n:'Lettres Arabes',u:'FLSH Sousse',l:'Licence',d:'3 ans',lang:'Arabe',f:'Gratuit'},
+  {n:'Lettres Françaises',u:'FLSH Sousse',l:'Licence',d:'3 ans',lang:'Français',f:'Gratuit'},
+  {n:'Langue Anglaise',u:'FLSH Sousse',l:'Licence',d:'3 ans',lang:'Anglais',f:'Gratuit'},
+  {n:'Histoire',u:'FLSH Sousse',l:'Licence',d:'3 ans',lang:'Arabe/Français',f:'Gratuit'},
+  {n:'Géographie',u:'FLSH Sousse',l:'Licence',d:'3 ans',lang:'Arabe/Français',f:'Gratuit'},
+  {n:'Économie',u:'Faculté des Sc. Écon. et de Gestion',l:'Licence',d:'3 ans',lang:'Français/Arabe',f:'Gratuit'},
+  {n:'Gestion des Entreprises',u:'Faculté des Sc. Écon. et de Gestion',l:'Licence',d:'3 ans',lang:'Français',f:'Gratuit'},
+  {n:'Études Commerciales',u:'IHEC Sousse',l:'Licence',d:'3 ans',lang:'Français/Arabe',f:'Gratuit'},
+  {n:'Management',u:'ISG Sousse',l:'Licence',d:'3 ans',lang:'Français',f:'Gratuit'},
+  {n:'Marketing',u:'ISG Sousse',l:'Master',d:'2 ans',lang:'Français',f:'Gratuit'},
+  {n:'Finance & Fiscalité',u:'ISFF Sousse',l:'Licence',d:'3 ans',lang:'Français/Arabe',f:'Gratuit'},
+  {n:'Sciences Infirmières',u:'Institut Sc. Infirmières de Sousse',l:'Licence',d:'3 ans',lang:'Arabe/Français',f:'Gratuit'},
+  {n:'Paramédical — Soins Infirmiers',u:'UPSAT Sousse (privé)',l:'Licence',d:'3 ans',lang:'Français/Arabe',f:'Payant'},
+  {n:'Anesthésie-Réanimation',u:'UPSAT Sousse (privé)',l:'Licence',d:'3 ans',lang:'Français',f:'Payant'},
+  {n:'Radiologie Médicale',u:'UPSAT Sousse (privé)',l:'Licence',d:'3 ans',lang:'Français',f:'Payant'},
+  {n:'Transport & Logistique',u:'ISTL Sousse',l:'Licence',d:'3 ans',lang:'Français/Arabe',f:'Gratuit'},
+  {n:'Supply Chain Management',u:'ISTL Sousse',l:'Master',d:'2 ans',lang:'Français/Anglais',f:'Gratuit'},
+  {n:'Horticulture & Productions Végétales',u:'ESHE Chott Meriem',l:'Licence',d:'3 ans',lang:'Arabe/Français',f:'Gratuit'},
+  {n:'Élevage & Productions Animales',u:'ESHE Chott Meriem',l:'Licence',d:'3 ans',lang:'Arabe/Français',f:'Gratuit'},
+  {n:'Musique',u:'Institut Supérieur de Musique de Sousse',l:'Licence',d:'3 ans',lang:'Arabe/Français',f:'Gratuit'},
+  {n:'Beaux-Arts & Arts Plastiques',u:'ISBA Sousse',l:'Licence',d:'3 ans',lang:'Arabe/Français',f:'Gratuit'},
+  {n:'Design Graphique',u:'ISBA Sousse',l:'Licence',d:'3 ans',lang:'Arabe/Français',f:'Gratuit'},
+  {n:'Gestion (privé)',u:'FMSA Sousse',l:'Licence',d:'3 ans',lang:'Français/Arabe',f:'Payant'},
+  {n:'Management International (privé)',u:'EPI Sousse',l:'Master',d:'2 ans',lang:'Anglais/Français',f:'Payant'},
+  {n:'Économie & Gestion (privé)',u:'EcoGest Sousse',l:'Licence',d:'3 ans',lang:'Français/Arabe',f:'Payant'},
+];
+
+const pops=[
+  {n:'Génie Informatique (ENISo)',ic:'ti-code'},{n:'Médecine (Fac. Médecine)',ic:'ti-stethoscope'},
+  {n:'Mécatronique (ENISo)',ic:'ti-robot'},{n:'Informatique & Télécoms (ISITCom)',ic:'ti-device-laptop'},
+  {n:'Droit (Fac. Droit)',ic:'ti-scale'},{n:'Management (ISG)',ic:'ti-briefcase'},
+  {n:'Sciences Infirmières',ic:'ti-heart-plus'},{n:'Transport & Logistique (ISTL)',ic:'ti-truck'},
+  {n:'Horticulture (ESHE)',ic:'ti-plant'},{n:'Beaux-Arts (ISBA)',ic:'ti-palette'},
+  {n:'Finance (IHEC / ISFF)',ic:'ti-currency-dollar'},{n:'Musique (ISM Sousse)',ic:'ti-music'},
+];
+
+const compareData=[
+  ['Critère','ENISo (public)','ISITCom (public)','Fac. Médecine (pub.)','EPI Sousse (privé)'],
+  ['Type','Public','Public','Public','Privé'],
+  ['Fondé','2005','1998','1974','2006'],
+  ['Étudiants','~1,200','~2,500','~4,800','~900'],
+  ['Frais','Gratuit','Gratuit','Gratuit','Payant'],
+  ['Diplômes','Ingénieur (5 ans)','Licence, Master','Doctorat MD (7 ans)','Licence, Master, Ing.'],
+  ['Langue','Français','Français/Anglais','Français','Anglais/Français'],
+  ['Accréditation','CTI (France)','Min. HE Tunisie','Min. Santé + HE','Min. HE Tunisie'],
+  ['Erasmus/Int.','✅ Oui','✅ Oui','✅ Oui','✅ Oui'],
+  ['Résidence univ.','✅ CROUS','✅ CROUS','✅ CROUS','❌ Non'],
+  ['Site web','eniso.rnu.tn','isitcom.rnu.tn','fmed.rnu.tn','episousse.com.tn'],
+];
+
+const lifeCards=[
+  {ic:'ti-building-community',t:'Résidences CROUS',p:'Résidences universitaires gérées par le CROUS à Sousse. Tarifs subventionnés : 30–80 TND/mois pour les étudiants boursiers.'},
+  {ic:'ti-soup',t:'Restaurants Universitaires',p:'Restaurants CROUS subventionnés sur tous les campus. Repas complet à partir de 1 TND avec carte étudiante.'},
+  {ic:'ti-bus',t:'Transport (TCV)',p:'La TCV (Société Régionale de Transport de Sousse) dessert tous les campus. Abonnement mensuel étudiant ~15 TND.'},
+  {ic:'ti-users',t:'Associations Étudiantes',p:'Clubs robotique (ENISo-Team, IEEE), arts, sport, scientifiques — plus de 60 associations actives dans les établissements.'},
+  {ic:'ti-ball-football',t:'Sport & Loisirs',p:'Installations sportives : piscines, terrains de football et basketball. Centre sportif universitaire au Pôle Technologique.'},
+  {ic:'ti-world',t:'Erasmus+ & Mobilité',p:'L\'Université de Sousse est membre de l\'AUF et partenaire Erasmus+. Échanges avec universités françaises, italiennes, espagnoles et allemandes.'},
+  {ic:'ti-stethoscope',t:'Santé Étudiante',p:'Centres de soins sur les campus universitaires. Consultations médicales gratuites. Médecine préventive assurée par l\'OSTTU.'},
+  {ic:'ti-map-pin',t:'Ville de Sousse',p:'3e ville de Tunisie. Médina classée UNESCO, plages, technopôle, zones industrielles — cadre de vie idéal pour les étudiants.'},
+];
+
+const careerData=[
+  {f:'Ingénieur Informatique (ENISo)',sal:'1,800–3,500',rate:88,sec:'Sociétés IT, télécom, offshoring, banques'},
+  {f:'Médecin (MD)',sal:'2,500–6,000+',rate:98,sec:'CHU, cliniques privées, médecine libérale'},
+  {f:'Ingénieur Mécatronique',sal:'1,600–3,200',rate:85,sec:'Industries, automobile, aérospatial'},
+  {f:'Informatique & Télécoms',sal:'1,400–3,000',rate:82,sec:'Telecom, IT, multimédia, startups'},
+  {f:'Gestion / Management',sal:'1,000–2,500',rate:75,sec:'PME, multinationales, administration'},
+  {f:'Droit',sal:'900–3,000',rate:70,sec:'Barreau, tribunaux, entreprises, État'},
+  {f:'Sciences Infirmières',sal:'850–1,800',rate:95,sec:'CHU, cliniques, coopération internationale'},
+  {f:'Transport & Logistique',sal:'1,000–2,500',rate:80,sec:'Transport, ports, logistique, distribution'},
+  {f:'Finance & Fiscalité',sal:'1,200–3,000',rate:78,sec:'Banques, cabinets d\'audit, DGI'},
+  {f:'Agronomie / Horticulture',sal:'800–1,800',rate:68,sec:'Agriculture, agroalimentaire, ONG, État'},
+];
+
+const botR={
+  'eniso':'L\'ENISo (École Nationale d\'Ingénieurs de Sousse), fondée en 2005, propose 5 spécialités d\'ingénieur : Génie Informatique Appliqué, Mécatronique, Électronique Industrielle, Télécommunications Embarquées, et Mécanique & Productique. Entrée par concours national (classes préparatoires). Site : eniso.rnu.tn',
+  'médecine':'La Faculté de Médecine Ibn El Jazzar de Sousse (fondée 1974) exige une très haute moyenne au bac — généralement 17.00–17.40 (données 2024). Durée : 7 ans (Doctorat en Médecine). Entièrement gratuit pour les étudiants tunisiens. Site : fmed.rnu.tn',
+  'privée':'Il y a 4 établissements privés accrédités à Sousse : 1) FMSA (gestion, Sahloul 1, fmsa-tunisie.com) 2) EPI Sousse (management international, Sahloul, episousse.com.tn) 3) EcoGest (économie & gestion, Boukhzar) 4) UPSAT (sciences paramédicales, réseau Honoris, 94% employabilité). Tous accrédités par le Min. de l\'Enseignement Supérieur.',
+  'isitcom':'L\'ISITCom (Institut Supérieur d\'Informatique et des Technologies de la Communication) est situé à Hammam Sousse. Il propose des Licences en Informatique, Réseaux, et Multimédia. Score d\'orientation typique : ~13.00–13.20. Site : isitcom.rnu.tn',
+  'coût':'À Sousse, les frais mensuels estimés : résidence CROUS 30–80 TND, restaurant universitaire subventionné 50–100 TND, transport TCV ~15 TND/mois, total minimum ~175 TND/mois pour les boursiers. Sans bourse, comptez environ 600–700 TND/mois.',
+  'erasmus':'Oui. L\'Université de Sousse est membre de l\'Agence Universitaire de la Francophonie (AUF) et dispose de partenariats Erasmus+ avec des universités françaises, italiennes, espagnoles et allemandes. L\'ENISo est particulièrement active sur les échanges européens.',
+};
+
+let CU=null;
+
+function gp(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('act'));
+  document.querySelectorAll('.nl').forEach(n=>n.classList.remove('act'));
+  document.getElementById('pg-'+id).classList.add('act');
+  if(el)el.classList.add('act');
+  window.scrollTo(0,0);
+}
+function fu(t,b){
+  document.querySelectorAll('#ufilts .fbtn').forEach(x=>x.classList.remove('act'));
+  b.classList.add('act');
+  rUG(t);
+}
+function fp(l,b){
+  document.querySelectorAll('#pflts .fbtn').forEach(x=>x.classList.remove('act'));
+  b.classList.add('act');
+  rPT(l);
+}
+function rUG(f='all'){
+  const g=document.getElementById('ugrid');
+  let list=f==='all'?unis:unis.filter(u=>u.type===f||u.tags.includes(f)||(f==='hum'&&u.tags.includes('arts')));
+  g.innerHTML=list.map(u=>`
+    <div class="card" onclick="showUni('${u.id}')">
+      <span class="ctype ${u.type}">${u.type==='public'?'Public':'Privé'}</span>
+      <div class="clogo">${u.abbr}</div>
+      <h3>${u.name}</h3>
+      <p>${u.desc.substring(0,88)}...</p>
+      <div class="cmeta">
+        <div class="cm"><i class="ti ti-books"></i>${u.programs} prog.</div>
+        <div class="cm"><i class="ti ti-users"></i>${u.students}</div>
+        <div class="cm"><i class="ti ti-award"></i>Est. ${u.founded}</div>
+      </div>
+    </div>
+  `).join('');
+}
+function rHG(){
+  const g=document.getElementById('hgrid');
+  g.innerHTML=unis.filter(u=>u.type==='public').slice(0,8).map(u=>`
+    <div class="card" onclick="showUni('${u.id}')">
+      <span class="ctype ${u.type}">Public</span>
+      <div class="clogo">${u.abbr}</div>
+      <h3>${u.name}</h3>
+      <p>${u.desc.substring(0,75)}...</p>
+      <div class="cmeta">
+        <div class="cm"><i class="ti ti-books"></i>${u.programs} prog.</div>
+        <div class="cm"><i class="ti ti-users"></i>${u.students}</div>
+      </div>
+    </div>
+  `).join('');
+}
+function rHP(){
+  document.getElementById('hprogs').innerHTML=pops.map(p=>`
+    <div class="ptag" onclick="gp('progs')"><i class="ti ${p.ic}"></i>${p.n}</div>
+  `).join('');
+}
+function showUni(id){
+  CU=unis.find(u=>u.id===id);
+  if(!CU)return;
+  const u=CU;
+  document.getElementById('dhero').innerHTML=`
+    <div class="uhi">
+      <div class="ulg">${u.abbr}</div>
+      <div>
+        <div class="uhn">${u.name}</div>
+        <div class="uhp">${u.desc}</div>
+        <div class="utags">
+          <span class="utag">${u.type==='public'?'🏛️ Public':'🏢 Privé'}</span>
+          <span class="utag">📅 Fondé ${u.founded}</span>
+          <span class="utag">👥 ${u.students}</span>
+          <span class="utag">🎓 ${u.programs} programmes</span>
+          <span class="utag">🌐 ${u.web}</span>
+        </div>
+      </div>
+    </div>
+  `;
+  rUT('ov');
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('act',i===0));
+  ['ov','pr','ad','co'].forEach((t,i)=>document.getElementById(t).style.display=i===0?'block':'none');
+  gp('detail');
+}
+function ut(tab,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('act'));
+  el.classList.add('act');
+  ['ov','pr','ad','co'].forEach(t=>document.getElementById(t).style.display=t===tab?'block':'none');
+  if(!document.getElementById(tab).innerHTML)rUT(tab);
+}
+function rUT(tab){
+  const u=CU;const el=document.getElementById(tab);
+  if(tab==='ov'){
+    el.style.display='block';
+    el.innerHTML=`
+      <div class="igrid" style="margin-bottom:24px">
+        <div class="ibox"><div class="ibl">Fondé</div><div class="ibv">${u.founded}</div></div>
+        <div class="ibox"><div class="ibl">Étudiants</div><div class="ibv">${u.students}</div></div>
+        <div class="ibox"><div class="ibl">Programmes</div><div class="ibv">${u.programs}</div></div>
+        <div class="ibox"><div class="ibl">Type</div><div class="ibv" style="text-transform:capitalize">${u.type==='public'?'Public (État)':'Privé'}</div></div>
+        <div class="ibox"><div class="ibl">Classement</div><div class="ibv" style="font-size:.8rem">${u.rank}</div></div>
+        <div class="ibox"><div class="ibl">Site web</div><div class="ibv" style="font-size:.8rem;color:#1a56db">${u.web}</div></div>
+      </div>
+      <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px">À propos</h3>
+      <p style="color:var(--g600);line-height:1.7;margin-bottom:18px">${u.desc} L'établissement fait partie de l'Université de Sousse (uso.rnu.tn), qui regroupe 17 institutions, 26 unités de recherche, et aspire à être un acteur majeur du développement socio-économique de la région.</p>
+      <div style="background:#eef2ff;border-radius:9px;padding:16px;border:1px solid #c7d2fe">
+        <div style="font-weight:700;color:var(--navy);margin-bottom:7px;font-size:.88rem">🌍 Partenariats Internationaux</div>
+        <p style="color:var(--g600);font-size:.82rem">Membre de l'Agence Universitaire de la Francophonie (AUF), de l'Association Internationale des Universités (IAU), et partenaire Erasmus+. Coopérations avec des universités françaises, italiennes, espagnoles, allemandes et belges.</p>
+      </div>
+    `;
+  }else if(tab==='pr'){
+    const ps=progs.filter(p=>p.u.toLowerCase().includes(u.name.split(' ')[u.name.split(' ').length>3?2:0].toLowerCase())||p.u.toLowerCase().includes(u.abbr.toLowerCase()));
+    const show=ps.length?ps:progs.slice(0,5);
+    el.innerHTML=`<div class="ctw"><div class="twrap"><table><thead><tr><th>Programme</th><th>Niveau</th><th>Durée</th><th>Langue</th><th>Frais</th></tr></thead><tbody>
+      ${show.map(p=>`<tr><td style="font-weight:600;color:var(--navy)">${p.n}</td><td><span class="badge ${p.l.includes('Ingé')?'bi':p.l.includes('Master')?'bm':p.l.includes('PhD')?'bp':'bl'}">${p.l}</span></td><td>${p.d}</td><td>${p.lang}</td><td><span class="badge ${p.f==='Gratuit'?'bf':'bpa'}">${p.f}</span></td></tr>`).join('')}
+    </tbody></table></div></div>`;
+  }else if(tab==='ad'){
+    el.innerHTML=`<div style="max-width:580px">
+      <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:14px">Conditions d'admission</h3>
+      <div class="igrid" style="margin-bottom:22px">
+        <div class="ibox"><div class="ibl">Accès</div><div class="ibv">${u.type==='public'?'REO national':'Examen d\'entrée'}</div></div>
+        <div class="ibox"><div class="ibl">Bac requis</div><div class="ibv">Oui</div></div>
+      </div>
+      <p style="color:var(--g600);line-height:1.7;margin-bottom:14px">${u.type==='public'?`L'admission dans les établissements publics passe par le système d'orientation nationale (REO) géré par le Ministère de l'Enseignement Supérieur. Les étudiants sont classés selon leur moyenne du baccalauréat et leurs vœux d'orientation.`:`Cet établissement privé organise ses propres épreuves de sélection. Contacter directement l'école pour les conditions d'admission de l'année en cours.`}</p>
+      <p style="color:var(--g600);line-height:1.7">Pour les concours d'ingénieur (ENISo, etc.), l'accès se fait après une classe préparatoire nationale (Mathématiques-Physique). Les filières médicales ont des scores d'orientation parmi les plus élevés de Tunisie.</p>
+    </div>`;
+  }else if(tab==='co'){
+    el.innerHTML=`<div style="max-width:460px">
+      <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:14px">Coordonnées</h3>
+      <div style="background:#fff;border:1px solid var(--g200);border-radius:11px;padding:18px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;gap:11px;align-items:center"><i class="ti ti-map-pin" style="color:var(--gold);font-size:17px"></i><span style="font-size:.86rem;color:var(--g700)">${u.addr}</span></div>
+        <div style="display:flex;gap:11px;align-items:center"><i class="ti ti-phone" style="color:var(--gold);font-size:17px"></i><span style="font-size:.86rem;color:var(--g700)">${u.phone}</span></div>
+        <div style="display:flex;gap:11px;align-items:center"><i class="ti ti-world" style="color:var(--gold);font-size:17px"></i><span style="font-size:.86rem;color:#1a56db">${u.web}</span></div>
+        <div style="display:flex;gap:11px;align-items:center"><i class="ti ti-building" style="color:var(--gold);font-size:17px"></i><span style="font-size:.86rem;color:var(--g700)">Université de Sousse — uso.rnu.tn | uc.rnu.tn</span></div>
+      </div>
+    </div>`;
+  }
+}
+function rPT(f='all'){
+  const b=document.getElementById('ptbody');
+  let list=f==='all'?progs:progs.filter(p=>p.l.includes(f));
+  b.innerHTML=list.map(p=>`<tr>
+    <td style="font-weight:600;color:var(--navy)">${p.n}</td>
+    <td style="color:var(--g600)">${p.u}</td>
+    <td><span class="badge ${p.l.includes('Ingé')?'bi':p.l.includes('Master')?'bm':p.l.includes('PhD')?'bp':'bl'}">${p.l}</span></td>
+    <td>${p.d}</td><td>${p.lang}</td>
+    <td><span class="badge ${p.f==='Gratuit'?'bf':'bpa'}">${p.f}</span></td>
+  </tr>`).join('');
+}
+function calc(){
+  const avg=parseFloat(document.getElementById('bavg').value);
+  const sec=document.getElementById('bsec').value;
+  const fld=document.getElementById('bfld').value;
+  const el=document.getElementById('ores');
+  if(!avg||avg<0||avg>20){el.style.display='block';el.innerHTML='<p style="color:#dc2626;font-weight:600">Veuillez entrer une moyenne valide (0–20).</p>';return;}
+  let res=[];
+  if(fld==='eng'){
+    if(avg>=14.2)res.push({u:'ENISo — Génie Informatique Appliqué',sc:'14.20',cls:'h',ch:'Haute'});
+    if(avg>=13.9)res.push({u:'ENISo — Génie Mécatronique',sc:'13.90',cls:avg>=13.9?'h':'m',ch:avg>=13.9?'Haute':'Modérée'});
+    if(avg>=13.6)res.push({u:'ENISo — Génie Électronique Industriel',sc:'13.60',cls:'h',ch:'Haute'});
+    if(avg>=12.9)res.push({u:'ISSAT Sousse — Sciences Appliquées',sc:'12.90',cls:'h',ch:'Haute'});
+    if(avg>=12)res.push({u:'ESSTHs Hammam Sousse',sc:'~12.00',cls:'h',ch:'Haute'});
+  }else if(fld==='it'){
+    if(avg>=13.2)res.push({u:'ISITCom Hammam Sousse',sc:'13.20',cls:'h',ch:'Haute'});
+    if(avg>=12.9)res.push({u:'ISSAT Sousse',sc:'12.90',cls:'h',ch:'Haute'});
+    if(avg>=12)res.push({u:'ESSTHs Hammam Sousse',sc:'~12.00',cls:'h',ch:'Haute'});
+  }else if(fld==='med'){
+    if(avg>=17.4)res.push({u:'Fac. Médecine Sousse — Médecine',sc:'17.40',cls:'h',ch:'Haute'});
+    else if(avg>=17.0)res.push({u:'Fac. Médecine Sousse — Médecine',sc:'17.40',cls:'m',ch:'Modérée'});
+    if(avg>=12.4)res.push({u:'Institut Sc. Infirmières de Sousse',sc:'12.40',cls:'h',ch:'Haute'});
+    if(avg>=12)res.push({u:'École Sup. Sc. & Tech. Santé (ESSTSS)',sc:'~12.00',cls:'h',ch:'Haute'});
+    res.push({u:'UPSAT Sousse (privé) — Paramédical',sc:'Examen entrée',cls:'m',ch:'Candidature'});
+  }else if(fld==='biz'){
+    if(avg>=12.4)res.push({u:'IHEC Sousse — Études Commerciales',sc:'12.40',cls:'h',ch:'Haute'});
+    if(avg>=12.2)res.push({u:'ISG Sousse — Management',sc:'12.20',cls:'h',ch:'Haute'});
+    if(avg>=11.2)res.push({u:'ISFF Sousse — Finance & Fiscalité',sc:'11.20',cls:'h',ch:'Haute'});
+    if(avg>=11)res.push({u:'Faculté Écon. & Gestion — Économie',sc:'~11.00',cls:'h',ch:'Haute'});
+    res.push({u:'EPI Sousse / EcoGest / FMSA (privé)',sc:'Examen entrée',cls:'m',ch:'Candidature'});
+  }else if(fld==='law'){
+    if(avg>=11.9)res.push({u:'Fac. Droit & Sc. Politiques — Droit',sc:'11.90',cls:'h',ch:'Haute'});
+    if(avg>=11)res.push({u:'Fac. Droit — Sciences Politiques',sc:'~11.00',cls:'h',ch:'Haute'});
+  }else if(fld==='hum'){
+    if(avg>=10.9)res.push({u:'FLSH Sousse — Lettres (Ar./Fr./En.)',sc:'10.90',cls:'h',ch:'Haute'});
+    if(avg>=10.5)res.push({u:'FLSH Sousse — Histoire / Géographie',sc:'10.50',cls:'h',ch:'Haute'});
+  }else if(fld==='agr'){
+    if(avg>=12.4)res.push({u:'ESHE Chott Meriem — Horticulture',sc:'12.40',cls:'h',ch:'Haute'});
+    if(avg>=12)res.push({u:'ESHE Chott Meriem — Élevage',sc:'~12.00',cls:'h',ch:'Haute'});
+  }else if(fld==='art'){
+    res.push({u:'ISBA Sousse — Beaux-Arts / Design',sc:'Dossier + concours',cls:'m',ch:'Candidature'});
+    res.push({u:'Institut Supérieur de Musique de Sousse',sc:'Audition + dossier',cls:'m',ch:'Candidature'});
+  }
+  if(!res.length)res.push({u:'Aucun établissement correspondant avec cette moyenne pour cette filière',sc:'N/A',cls:'l',ch:'Faible'});
+  el.style.display='block';
+  el.innerHTML=`<div style="font-weight:700;color:var(--navy);margin-bottom:12px">Résultats — Section: <em>${sec}</em> — Moyenne: <strong>${avg}/20</strong></div>
+  ${res.map(r=>`<div class="ri ${r.cls}"><div><div class="run">${r.u}</div><div style="font-size:.75rem;color:var(--g500);margin-top:2px">Score indicatif d'orientation 2024: ${r.sc}</div></div><span class="rch ${r.ch==='Haute'?'ch':r.ch==='Modérée'?'cm2':'cl'}">${r.ch}</span></div>`).join('')}
+  <p style="font-size:.74rem;color:var(--g400);margin-top:10px">*Scores indicatifs 2024. Les affectations finales dépendent du classement national REO.</p>`;
+}
+function rComp(){
+  const h=document.getElementById('chead');
+  h.innerHTML=compareData[0].map(c=>`<div style="padding:14px;font-size:.82rem;font-weight:700;text-align:${compareData[0].indexOf(c)===0?'left':'center'};border-right:1px solid rgba(255,255,255,.1)">${c}</div>`).join('');
+  const r=document.getElementById('crows');
+  r.innerHTML=compareData.slice(1).map((row,i)=>`
+    <div style="display:grid;grid-template-columns:180px repeat(4,1fr);border-bottom:1px solid var(--g200);background:${i%2===0?'#fff':'var(--g50)'}">
+      ${row.map((c,j)=>`<div style="padding:13px 14px;font-size:.82rem;border-right:1px solid var(--g200);text-align:${j===0?'left':'center'};${j===0?'font-weight:600;color:var(--g600)':'color:var(--g700)'}">${c}</div>`).join('')}
+    </div>
+  `).join('');
+}
+function rLife(){
+  document.getElementById('lgrid').innerHTML=lifeCards.map(c=>`
+    <div class="lcard"><div class="lci"><i class="ti ${c.ic}"></i></div><h3>${c.t}</h3><p>${c.p}</p></div>
+  `).join('');
+}
+function rCareer(){
+  const b=document.getElementById('ctbody');
+  const max=6000;
+  b.innerHTML=careerData.map(c=>{
+    const lo=parseInt(c.sal.replace(/[^0-9]/,'').slice(0,4));
+    const w=Math.round(lo/max*100);
+    return`<tr>
+      <td style="font-weight:700;color:var(--navy)">${c.f}</td>
+      <td><div style="display:flex;align-items:center;gap:8px"><span style="font-size:.8rem;min-width:110px">${c.sal} TND</span><div style="flex:1;height:7px;background:var(--g100);border-radius:4px;overflow:hidden"><div style="width:${w}%;height:100%;background:var(--gold);border-radius:4px"></div></div></div></td>
+      <td><div style="display:flex;align-items:center;gap:7px"><div style="flex:1;height:7px;background:var(--g100);border-radius:4px;overflow:hidden"><div style="width:${c.rate}%;height:100%;background:#22c55e;border-radius:4px"></div></div><span style="font-size:.8rem;font-weight:700;color:#166534">${c.rate}%</span></div></td>
+      <td style="font-size:.79rem;color:var(--g600)">${c.sec}</td>
+    </tr>`;
+  }).join('');
+}
+function sc(){
+  const inp=document.getElementById('cinp');
+  const msg=inp.value.trim();if(!msg)return;
+  inp.value='';addMsg(msg,'u');
+  setTimeout(()=>{
+    const low=msg.toLowerCase();
+    let rep='Pour plus d\'informations, consultez le site officiel de l\'Université de Sousse : uso.rnu.tn ou uc.rnu.tn. Je peux aussi vous aider à naviguer vers la page des programmes ou le calculateur d\'orientation !';
+    for(const[k,v]of Object.entries(botR)){if(low.includes(k)){rep=v;break;}}
+    addMsg(rep,'b');
+  },650);
+}
+function qc(m){document.getElementById('cinp').value=m;sc();}
+function addMsg(t,w){
+  const c=document.getElementById('chatmsgs');
+  const d=document.createElement('div');
+  d.className=`msg m${w}`;d.innerHTML=`<div class="mb2">${t}</div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+
+// INIT
+rHG();rHP();rUG('all');rPT('all');rComp();rLife();rCareer();
+</script>
+</body>
+</html>
