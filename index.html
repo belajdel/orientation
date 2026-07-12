@@ -939,20 +939,20 @@ footer{
        Start in "test mode" for now (or add security rules limiting reads/writes as needed).
     That's it — once this config is filled in, messages sync in real time across every device.
   */
-const firebaseConfig = {
-  apiKey: "AIzaSyBe6gXJiTIt4YheGGTliJvyuin6XfkxX8o",
-  authDomain: "es2lni-c49e0.firebaseapp.com",
-  projectId: "es2lni-c49e0",
-  storageBucket: "es2lni-c49e0.firebasestorage.app",
-  messagingSenderId: "491726162397",
-  appId: "1:491726162397:web:2a6fde6a96f8dee226ce34",
-  measurementId: "G-CSXGR8TZ4G"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyBe6gXJiTIt4YheGGTliJvyuin6XfkxX8o",
+    authDomain: "es2lni-c49e0.firebaseapp.com",
+    projectId: "es2lni-c49e0",
+    storageBucket: "es2lni-c49e0.firebasestorage.app",
+    messagingSenderId: "491726162397",
+    appId: "1:491726162397:web:2a6fde6a96f8dee226ce34",
+    measurementId: "G-CSXGR8TZ4G"
+  };
 
   let db = null;
   let firebaseReady = false;
   try {
-    if (firebaseConfig.apiKey !== "AIzaSyBe6gXJiTIt4YheGGTliJvyuin6XfkxX8o") {
+    if (firebaseConfig.apiKey && firebaseConfig.apiKey.indexOf('YOUR_') !== 0) {
       firebase.initializeApp(firebaseConfig);
       db = firebase.firestore();
       firebaseReady = true;
