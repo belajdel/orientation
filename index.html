@@ -908,7 +908,6 @@ const institutions = [
     type: 'faculty',
     icon: '🏥',
     students: 4800,
-    programs: 5,
     established: 1974,
     phone: '+216 73 225 999',
     email: 'fm@rnu.tn',
@@ -935,7 +934,6 @@ const institutions = [
     type: 'faculty',
     icon: '⚖️',
     students: 6500,
-    programs: 8,
     established: 1989,
     phone: '+216 73 XXX XXX',
     email: 'fdsp@rnu.tn',
@@ -962,28 +960,58 @@ const institutions = [
     name: 'كلية الآداب والعلوم الإنسانية بسوسة',
     type: 'faculty',
     icon: '📚',
-    students: 5500,
-    programs: 12,
+    students: 3000,
+    teachers: 300,
     established: 1990,
     phone: '+216 73 301 801',
     email: 'flsh@rnu.tn',
     website: 'fls.rnu.tn',
     address: 'مدينة الأرياض، 4023 سوسة',
-    description: 'تقدم برامج في اللغات والآداب والتاريخ والجغرافيا.',
+    description: 'مؤسسة جامعية تابعة لجامعة سوسة، تقدم برامج في اللغات والآداب والتاريخ والجغرافيا والأنثروبولوجيا.',
     details: {
-      about: 'تعتبر من الأقطاب الجامعية المهمة في العلوم الإنسانية بالمنطقة الوسطى.',
+      about: 'مؤسسة جامعية تابعة لجامعة سوسة، تضم حوالي 3000 طالب ويدرّس بها حوالي 300 أستاذ من مختلف الاختصاصات. تعتبر من الأقطاب الجامعية المهمة في العلوم الإنسانية بالمنطقة الوسطى.',
       admission: 'معدل الالتحاق 10.5-10.9',
       duration: '3 سنوات',
       language: 'عربي وفرنسي وإنجليزي',
-      fees: 'مجاني'
+      fees: 'مجاني',
+      programDetails: `
+        <div style="margin-bottom:20px">
+          <strong>📖 شعبة اللغة والأدب والحضارة العربية</strong><br>
+          من أبرز الاختصاصات التي تؤمنها الكلية، تهتم بدراسة اللغة العربية وآدابها وحضارتها بأبعادها التاريخية والثقافية والفكرية. مدة الدراسة 3 سنوات للحصول على الإجازة.<br><br>
+          <u>مواصلة الدراسة بعد الإجازة:</u> التخصص في اللغة العربية أو الأدب العربي أو الحضارة العربية، أو الالتحاق بماجستير تعليم العربية للناطقين بغيرها، أو ماجستير الترجمة، أو ماجستير الصحافة والإعلام.<br><br>
+          <u>المواد الأساسية:</u> الأدب العربي (شعراً ونثراً)، الحضارة العربية القديمة والحديثة، وعلوم اللغة العربية (الصرف، الإعراب، البلاغة، العروض). أما المواد الأفقية والاختيارية فتشمل الإعلامية، اللغة الإنجليزية، اللغة الفرنسية، الأنشطة الثقافية، والتعريب.<br><br>
+          <u>السنة الأولى:</u> الحضارة العربية القديمة والحديثة؛ الأدب العربي (الشعر، النثر)؛ اللغة العربية (الإعراب، الاشتقاق، العروض، البلاغة، التصريف)؛ مواد أفقية وأنشطة موازية.<br>
+          <u>السنة الثانية:</u> الحضارة العربية القديمة والحديثة؛ الأدب العربي (الشعر، النثر)؛ اللغة العربية (الصوتيات، الإعراب)؛ اللغة الفرنسية؛ اللغة الإنجليزية؛ الإعلامية؛ لغة اختيارية؛ الأنشطة الثقافية والطلابية.<br>
+          <u>السنة الثالثة:</u> النقد الأدبي القديم والحديث؛ الحضارة العربية؛ اللغة العربية (اللسانيات، المورفولوجيا، العلوم الدلالية)؛ مواد تكميلية أخرى؛ تربص اختياري بإحدى المدارس الإعدادية أو المعاهد الثانوية.<br><br>
+          <u>الآفاق المهنية:</u> التدريس بمختلف المراحل (ابتدائي، إعدادي، ثانوي، عالٍ)، التدقيق والمراجعة اللغوية، الصحافة والإعلام والتحرير الصحفي، العمل بالإذاعة والتلفزيون، تعليم اللغة العربية للناطقين بغيرها، والبحث العلمي في مجالات اللغة والأدب والحضارة العربية.
+        </div>
+        <div style="margin-bottom:20px">
+          <strong>🌍 الإجازة في الأنثروبولوجيا (علم الإنسان)</strong><br>
+          هذا الاختصاص متوفر في تونس بثلاث مؤسسات فقط: كلية الآداب والعلوم الإنسانية بسوسة، والمعهد العالي للعلوم الإنسانية بتونس (ابن شرف)، والمعهد العالي للفنون والحرف بتطاوين.<br><br>
+          <u>البكالوريات المؤهلة للتوجيه:</u> آداب، رياضيات، علوم تجريبية، اقتصاد وتصرف، علوم تقنية، علوم الإعلامية.<br>
+          <u>الآفاق المهنية:</u> التعليم، الإدارات العمومية، الجمعيات، والبحث العلمي.<br><br>
+          الأنثروبولوجيا الاجتماعية والثقافية هي علم دراسة الإنسان في ثقافته وحضارته ومجتمعه، بجوانبه الثقافية والدينية والسياسية والبيولوجية، إضافة إلى كونها علماً يدرس الظواهر الإنسانية وممارسات الحياة اليومية في المجتمعات القديمة والحديثة، وهي مرتبطة بعلم الاجتماع.
+        </div>
+        <div>
+          <strong>🇫🇷 الإجازة الوطنية في اللغة والأدب والحضارة الفرنسية</strong><br>
+          من أهم الاختصاصات في ميدان العلوم الإنسانية، تهدف إلى تمكين الطالب من إتقان اللغة الفرنسية وتطوير معارفه في الأدب الفرنسي والفرنكفوني والحضارة الفرنسية بأبعادها الثقافية والتاريخية والفكرية. تدوم الدراسة 3 سنوات جامعية.<br><br>
+          <u>السنة الأولى:</u><br>
+          اللغة الفرنسية: Morphologie، Syntaxe، Production écrite، Production orale.<br>
+          الأدب: Roman، Poésie، Théâtre.<br>
+          الحضارة: Repères historiques، Repères géographiques.<br>
+          وحدات أفقية: اللغة الإنجليزية، الإعلامية، الأنشطة التطبيقية والثقافية.<br><br>
+          في السنة الثانية يتابع الطالب دراسة مواد أكثر تخصصاً في اللغة والأدب والحضارة الفرنسية.
+        </div>
+      `
     },
     programs: [
-      { name: 'اللغة العربية', duration: '3 سنوات', level: 'إجازة', language: 'عربي' },
-      { name: 'اللغة الفرنسية', duration: '3 سنوات', level: 'إجازة', language: 'فرنسي' },
+      { name: 'اللغة والأدب والحضارة العربية', duration: '3 سنوات', level: 'إجازة', language: 'عربي' },
+      { name: 'اللغة والأدب والحضارة الفرنسية', duration: '3 سنوات', level: 'إجازة', language: 'فرنسي' },
       { name: 'اللغة الإنجليزية', duration: '3 سنوات', level: 'إجازة', language: 'إنجليزي' },
       { name: 'التاريخ', duration: '3 سنوات', level: 'إجازة', language: 'عربي/فرنسي' },
       { name: 'الجغرافيا', duration: '3 سنوات', level: 'إجازة', language: 'عربي/فرنسي' },
-      { name: 'الحضارة الإسلامية', duration: '3 سنوات', level: 'إجازة', language: 'عربي' }
+      { name: 'الحضارة الإسلامية', duration: '3 سنوات', level: 'إجازة', language: 'عربي' },
+      { name: 'الأنثروبولوجيا (علم الإنسان)', duration: '3 سنوات', level: 'إجازة', language: 'عربي' }
     ]
   },
   {
@@ -992,7 +1020,6 @@ const institutions = [
     type: 'faculty',
     icon: '💼',
     students: 5000,
-    programs: 10,
     established: 1991,
     phone: '+216 73 XXX XXX',
     email: 'fseg@rnu.tn',
@@ -1020,7 +1047,6 @@ const institutions = [
     type: 'school',
     icon: '🔧',
     students: 1200,
-    programs: 5,
     established: 2005,
     phone: '+216 73 369 500',
     email: 'eniso@rnu.tn',
@@ -1048,7 +1074,6 @@ const institutions = [
     type: 'institute',
     icon: '💻',
     students: 2500,
-    programs: 9,
     established: 1998,
     phone: '+216 73 XXX XXX',
     email: 'isitcom@rnu.tn',
@@ -1076,7 +1101,6 @@ const institutions = [
     type: 'institute',
     icon: '🏢',
     students: 3200,
-    programs: 8,
     established: 1992,
     phone: '+216 73 XXX XXX',
     email: 'isg@rnu.tn',
@@ -1104,7 +1128,6 @@ const institutions = [
     type: 'institute',
     icon: '💰',
     students: 2800,
-    programs: 7,
     established: 1992,
     phone: '+216 73 XXX XXX',
     email: 'ihec@rnu.tn',
@@ -1179,7 +1202,7 @@ function createInstitutionCard(inst) {
       <div class="card-text">${inst.description}</div>
       <div style="margin-top:15px;font-size:12px;color:var(--gray-600)">
         <div>👥 ${inst.students} طالب</div>
-        <div>📚 ${inst.programs} برامج</div>
+        <div>📚 ${inst.programs.length} برامج</div>
         <div>📅 منذ ${inst.established}</div>
       </div>
       <div class="card-badge" onclick="event.stopPropagation()">اضغط للتفاصيل</div>
@@ -1217,12 +1240,17 @@ function showDetail(id) {
         </div>
         <div class="info-item">
           <div class="info-label">عدد البرامج</div>
-          <div class="info-value">${inst.programs} برنامج</div>
+          <div class="info-value">${inst.programs.length} برنامج</div>
         </div>
         <div class="info-item">
           <div class="info-label">نوع المؤسسة</div>
           <div class="info-value">${inst.type === 'faculty' ? 'كلية' : inst.type === 'school' ? 'مدرسة عليا' : 'معهد عالي'}</div>
         </div>
+        ${inst.teachers ? `
+        <div class="info-item">
+          <div class="info-label">عدد الأساتذة</div>
+          <div class="info-value">~${inst.teachers} أستاذ</div>
+        </div>` : ''}
       </div>
     </div>
 
@@ -1286,6 +1314,16 @@ function showDetail(id) {
         ${programsList}
       </ul>
     </div>
+
+    ${inst.details.programDetails ? `
+    <div class="detail-section">
+      <div class="detail-section-title">تفاصيل الشعب والمناهج الدراسية</div>
+      <div class="detail-info" style="grid-template-columns:1fr">
+        <div class="info-item">
+          <div class="info-value" style="line-height:1.9">${inst.details.programDetails}</div>
+        </div>
+      </div>
+    </div>` : ''}
   `;
 
   document.getElementById('detailContent').innerHTML = html;
