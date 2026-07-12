@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>إسألني - منصة المساعدة الجامعية</title>
+<title>إسألني - منصة المعلومات الجامعية الشاملة</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/dist/tabler-icons.min.css">
 <style>
 :root{
@@ -45,7 +45,8 @@ nav{
 .nav-content{
   display:flex;
   justify-content:space-between;
-  align-items:center
+  align-items:center;
+  gap:30px
 }
 .logo-section{
   display:flex;
@@ -53,7 +54,8 @@ nav{
   gap:12px;
   cursor:pointer;
   font-weight:800;
-  font-size:20px
+  font-size:20px;
+  flex-shrink:0
 }
 .logo-box{
   width:45px;
@@ -69,7 +71,9 @@ nav{
 }
 .nav-links{
   display:flex;
-  gap:30px
+  gap:30px;
+  flex:1;
+  justify-content:center
 }
 .nav-link{
   color:var(--light);
@@ -78,10 +82,15 @@ nav{
   font-weight:600;
   transition:all .3s;
   padding:8px 15px;
-  border-radius:8px
+  border-radius:8px;
+  white-space:nowrap
 }
 .nav-link:hover{
   background:rgba(255,255,255,.2)
+}
+.nav-link.active{
+  background:var(--gold);
+  color:var(--primary)
 }
 .auth-btn{
   background:var(--gold);
@@ -92,11 +101,11 @@ nav{
   font-weight:700;
   cursor:pointer;
   font-size:14px;
-  transition:all .3s
+  transition:all .3s;
+  white-space:nowrap
 }
 .auth-btn:hover{
-  background:#fff;
-  transform:scale(1.05)
+  background:#fff
 }
 .auth-btn.logout{
   background:rgba(255,255,255,.3);
@@ -108,7 +117,166 @@ nav{
 .page.active{display:block;animation:fadeIn .3s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* Auth Modal */
+/* Hero Section */
+.hero{
+  background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color:var(--light);
+  padding:60px 20px;
+  text-align:center;
+}
+.hero-title{
+  font-size:48px;
+  font-weight:900;
+  margin-bottom:15px
+}
+.hero-subtitle{
+  font-size:20px;
+  opacity:.9;
+  margin-bottom:30px;
+  max-width:700px;
+  margin-left:auto;
+  margin-right:auto
+}
+
+/* Section */
+.section{
+  padding:50px 20px;
+  border-bottom:1px solid var(--gray-200)
+}
+.section-title{
+  font-size:36px;
+  font-weight:800;
+  color:var(--primary);
+  margin-bottom:30px;
+  text-align:center
+}
+.section-subtitle{
+  font-size:18px;
+  color:var(--gray-600);
+  text-align:center;
+  margin-bottom:40px
+}
+
+/* Grid Cards */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:25px;
+  margin-bottom:30px
+}
+.card{
+  background:var(--light);
+  border:2px solid var(--gray-200);
+  border-radius:var(--radius);
+  padding:30px;
+  transition:all .3s;
+  cursor:pointer
+}
+.card:hover{
+  border-color:var(--primary);
+  transform:translateY(-5px);
+  box-shadow:var(--shadow)
+}
+.card-icon{
+  font-size:40px;
+  margin-bottom:15px
+}
+.card-title{
+  font-size:20px;
+  font-weight:700;
+  color:var(--primary);
+  margin-bottom:12px
+}
+.card-text{
+  font-size:14px;
+  color:var(--gray-600);
+  line-height:1.6
+}
+.card-badge{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--primary);
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+  margin-top:15px
+}
+
+/* Table */
+.table-container{
+  overflow-x:auto;
+  margin:30px 0
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:var(--light)
+}
+th{
+  background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color:var(--light);
+  padding:15px;
+  text-align:right;
+  font-weight:700;
+  font-size:14px;
+  text-transform:uppercase
+}
+td{
+  padding:15px;
+  border-bottom:1px solid var(--gray-200);
+  font-size:14px
+}
+tr:hover{
+  background:var(--gray-50)
+}
+.badge{
+  display:inline-block;
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+  text-align:center
+}
+.badge-free{
+  background:#c8e6c9;
+  color:#2e7d32
+}
+.badge-paid{
+  background:#ffe0b2;
+  color:#e65100
+}
+.badge-high{
+  background:#f8bbd0;
+  color:#c2185b
+}
+
+/* Info Grid */
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:20px;
+  background:var(--gray-50);
+  padding:30px;
+  border-radius:var(--radius)
+}
+.info-item{
+  text-align:center
+}
+.info-number{
+  font-size:32px;
+  font-weight:900;
+  color:var(--primary);
+  line-height:1
+}
+.info-label{
+  font-size:14px;
+  color:var(--gray-600);
+  margin-top:8px;
+  font-weight:600
+}
+
+/* Modal */
 .modal{
   display:none;
   position:fixed;
@@ -120,23 +288,202 @@ nav{
   justify-content:center;
   align-items:center;
   z-index:2000;
-  direction:rtl
+  overflow-y:auto
 }
 .modal.active{display:flex}
 .modal-content{
   background:var(--light);
   border-radius:var(--radius);
   padding:40px;
-  max-width:450px;
+  max-width:600px;
   width:95%;
-  box-shadow:0 10px 40px rgba(0,0,0,.2)
+  margin:auto;
+  max-height:90vh;
+  overflow-y:auto
+}
+.modal-close{
+  position:absolute;
+  top:15px;
+  right:15px;
+  font-size:28px;
+  cursor:pointer;
+  color:var(--gray-600)
 }
 .modal-title{
-  font-size:24px;
+  font-size:28px;
   font-weight:800;
   margin-bottom:20px;
   color:var(--primary)
 }
+.modal-section{
+  margin-bottom:25px
+}
+.modal-section-title{
+  font-weight:700;
+  color:var(--primary);
+  margin-bottom:12px;
+  font-size:16px
+}
+.modal-text{
+  font-size:14px;
+  color:var(--gray-600);
+  line-height:1.8
+}
+.modal-list{
+  list-style:none;
+  padding:0
+}
+.modal-list li{
+  padding:8px 0;
+  border-bottom:1px solid var(--gray-100);
+  font-size:14px
+}
+.modal-list li:before{
+  content:'✓ ';
+  color:var(--primary);
+  font-weight:700;
+  margin-left:10px
+}
+
+/* Chat Widget */
+.chat-widget{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  width:350px;
+  background:var(--light);
+  border-radius:var(--radius);
+  border:2px solid var(--gray-200);
+  box-shadow:0 10px 40px rgba(0,0,0,.2);
+  display:flex;
+  flex-direction:column;
+  height:500px;
+  z-index:999
+}
+.chat-widget.minimized{
+  height:60px
+}
+.chat-widget.minimized .chat-messages,
+.chat-widget.minimized .chat-input{
+  display:none
+}
+.chat-header{
+  background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color:var(--light);
+  padding:15px;
+  font-weight:700;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  cursor:pointer;
+  border-radius:10px 10px 0 0
+}
+.chat-minimize{
+  background:rgba(255,255,255,.2);
+  border:none;
+  color:var(--light);
+  cursor:pointer;
+  font-size:18px;
+  padding:5px 10px;
+  border-radius:5px
+}
+.chat-messages{
+  flex:1;
+  overflow-y:auto;
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  gap:10px
+}
+.message{
+  display:flex;
+  gap:8px;
+  margin-bottom:8px;
+  max-width:100%
+}
+.message.user{
+  justify-content:flex-end
+}
+.message-avatar{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--light);
+  font-weight:700;
+  font-size:12px;
+  flex-shrink:0
+}
+.message.user .message-avatar{
+  background:var(--primary)
+}
+.message.helper .message-avatar{
+  background:var(--gold);
+  color:var(--primary)
+}
+.message-bubble{
+  max-width:80%;
+  padding:10px 12px;
+  border-radius:10px;
+  font-size:13px;
+  word-wrap:break-word;
+  line-height:1.4
+}
+.message.user .message-bubble{
+  background:var(--primary);
+  color:var(--light)
+}
+.message.helper .message-bubble{
+  background:var(--gray-100);
+  color:var(--gray-700)
+}
+.chat-input{
+  padding:12px;
+  border-top:2px solid var(--gray-200);
+  display:flex;
+  gap:8px
+}
+.chat-input input{
+  flex:1;
+  padding:8px;
+  border:2px solid var(--gray-200);
+  border-radius:6px;
+  font-size:13px;
+  text-align:right
+}
+.chat-input input:focus{
+  outline:none;
+  border-color:var(--primary)
+}
+.chat-input button{
+  background:var(--primary);
+  color:var(--light);
+  border:none;
+  padding:8px 15px;
+  border-radius:6px;
+  font-weight:700;
+  cursor:pointer;
+  font-size:12px
+}
+.chat-input button:hover{
+  background:var(--primary-dark)
+}
+
+/* Empty State */
+.empty-state{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  height:200px;
+  gap:15px;
+  color:var(--gray-600)
+}
+.empty-icon{font-size:48px}
+
+/* Form */
 .form-group{
   margin-bottom:20px
 }
@@ -160,369 +507,52 @@ nav{
   border-color:var(--primary)
 }
 .form-btn{
-  width:100%;
-  padding:12px;
   background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color:var(--light);
   border:none;
+  padding:12px 30px;
   border-radius:8px;
   font-weight:700;
   cursor:pointer;
-  font-size:16px;
+  font-size:14px;
   transition:all .3s
 }
 .form-btn:hover{
   transform:translateY(-2px);
   box-shadow:var(--shadow)
 }
-.toggle-auth{
-  text-align:center;
-  margin-top:15px;
-  font-size:14px
-}
-.toggle-auth a{
-  color:var(--primary);
-  cursor:pointer;
-  font-weight:600;
-  text-decoration:underline
-}
-.close-modal{
-  position:absolute;
-  top:15px;
-  right:15px;
-  font-size:28px;
-  cursor:pointer;
-  color:var(--gray-600)
-}
-.error-msg{
-  background:#ffebee;
-  color:#c41e3a;
-  padding:12px;
-  border-radius:8px;
-  margin-bottom:15px;
-  display:none;
-  font-size:14px
-}
-
-/* Home Page */
-.hero{
-  background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color:var(--light);
-  padding:80px 20px;
-  text-align:center;
-  border-radius:var(--radius)
-}
-.hero-title{
-  font-size:42px;
-  font-weight:900;
-  margin-bottom:15px
-}
-.hero-subtitle{
-  font-size:18px;
-  opacity:.9;
-  margin-bottom:30px;
-  max-width:600px;
-  margin-left:auto;
-  margin-right:auto
-}
-.hero-buttons{
-  display:flex;
-  gap:15px;
-  justify-content:center;
-  flex-wrap:wrap
-}
-.btn{
-  padding:12px 30px;
-  border:none;
-  border-radius:8px;
-  font-weight:700;
-  cursor:pointer;
-  font-size:16px;
-  transition:all .3s;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  gap:8px
-}
-.btn-primary{
-  background:var(--gold);
-  color:var(--primary)
-}
-.btn-primary:hover{
-  background:#fff;
-  transform:scale(1.05)
-}
-.btn-secondary{
-  background:rgba(255,255,255,.2);
-  color:var(--light);
-  border:2px solid var(--light)
-}
-.btn-secondary:hover{
-  background:var(--light);
-  color:var(--primary)
-}
-
-/* Chat Section */
-.chat-container{
-  display:grid;
-  grid-template-columns:1fr 350px;
-  gap:20px;
-  margin-top:30px;
-  height:600px
-}
-.chat-main{
-  background:var(--light);
-  border-radius:var(--radius);
-  border:2px solid var(--gray-200);
-  display:flex;
-  flex-direction:column;
-  overflow:hidden
-}
-.chat-header{
-  background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color:var(--light);
-  padding:20px;
-  font-weight:700;
-  font-size:16px
-}
-.chat-messages{
-  flex:1;
-  overflow-y:auto;
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  gap:15px
-}
-.message{
-  display:flex;
-  gap:10px;
-  margin-bottom:10px
-}
-.message.user{
-  justify-content:flex-end
-}
-.message.helper{
-  justify-content:flex-start
-}
-.message-avatar{
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--light);
-  font-weight:700;
-  font-size:18px;
-  flex-shrink:0
-}
-.message.user .message-avatar{
-  background:var(--primary)
-}
-.message.helper .message-avatar{
-  background:var(--gold);
-  color:var(--primary)
-}
-.message-bubble{
-  max-width:70%;
-  padding:12px 15px;
-  border-radius:12px;
-  font-size:14px;
-  word-wrap:break-word
-}
-.message.user .message-bubble{
-  background:var(--primary);
-  color:var(--light)
-}
-.message.helper .message-bubble{
-  background:var(--gray-100);
-  color:var(--gray-700)
-}
-.message.system .message-bubble{
-  background:var(--gold);
-  color:var(--primary);
-  text-align:center;
-  max-width:100%;
-  margin:0 auto;
-  font-size:13px;
-  font-weight:600
-}
-.chat-input{
-  padding:15px;
-  border-top:2px solid var(--gray-200);
-  display:flex;
-  gap:10px
-}
-.chat-input input{
-  flex:1;
-  padding:12px;
-  border:2px solid var(--gray-200);
-  border-radius:8px;
-  font-size:14px;
-  text-align:right;
-  transition:border .3s
-}
-.chat-input input:focus{
-  outline:none;
-  border-color:var(--primary)
-}
-.chat-input button{
-  background:var(--primary);
-  color:var(--light);
-  border:none;
-  padding:12px 25px;
-  border-radius:8px;
-  font-weight:700;
-  cursor:pointer;
-  transition:all .3s
-}
-.chat-input button:hover{
-  background:var(--primary-dark)
-}
-
-/* Helpers List */
-.helpers-panel{
-  background:var(--light);
-  border-radius:var(--radius);
-  border:2px solid var(--gray-200);
-  padding:20px;
-  display:flex;
-  flex-direction:column
-}
-.helpers-title{
-  font-weight:700;
-  margin-bottom:15px;
-  color:var(--primary);
-  font-size:14px;
-  text-transform:uppercase
-}
-.helpers-list{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  flex:1;
-  overflow-y:auto
-}
-.helper-item{
-  padding:12px;
-  border-radius:8px;
-  border:2px solid var(--gray-200);
-  cursor:pointer;
-  transition:all .3s;
-  text-align:center
-}
-.helper-item:hover{
-  border-color:var(--primary);
-  background:var(--gray-50)
-}
-.helper-name{
-  font-weight:700;
-  font-size:14px;
-  color:var(--primary)
-}
-.helper-status{
-  font-size:12px;
-  color:var(--gray-600);
-  margin-top:5px
-}
-.status-badge{
-  display:inline-block;
-  width:8px;
-  height:8px;
-  background:#4caf50;
-  border-radius:50%;
-  margin-right:5px
-}
-
-/* Info Cards */
-.info-section{
-  margin-top:40px
-}
-.info-title{
-  font-size:28px;
-  font-weight:800;
-  color:var(--primary);
-  margin-bottom:20px;
-  text-align:center
-}
-.info-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-  gap:20px
-}
-.info-card{
-  background:var(--gray-50);
-  border:2px solid var(--gray-200);
-  border-radius:var(--radius);
-  padding:25px;
-  text-align:center;
-  transition:all .3s
-}
-.info-card:hover{
-  border-color:var(--primary);
-  transform:translateY(-5px);
-  box-shadow:var(--shadow)
-}
-.info-icon{
-  font-size:36px;
-  margin-bottom:15px
-}
-.info-card-title{
-  font-weight:700;
-  color:var(--primary);
-  margin-bottom:10px;
-  font-size:18px
-}
-.info-card-text{
-  font-size:14px;
-  color:var(--gray-600);
-  line-height:1.6
-}
 
 /* Responsive */
 @media(max-width:768px){
-  .chat-container{
-    grid-template-columns:1fr;
-    height:auto
-  }
-  .chat-main{
-    height:500px
-  }
-  .helpers-panel{
-    height:300px
-  }
-  .hero-title{font-size:32px}
   .nav-links{display:none}
-  .message-bubble{max-width:90%}
+  .hero-title{font-size:32px}
+  .section-title{font-size:28px}
+  .grid{grid-template-columns:1fr}
+  .chat-widget{width:100%;left:0;right:0;bottom:0;border-radius:20px 20px 0 0;max-height:60vh}
 }
 
-/* Empty State */
-.empty-state{
+/* Footer */
+footer{
+  background:var(--gray-50);
+  border-top:2px solid var(--gray-200);
+  padding:40px 20px;
+  text-align:center;
+  color:var(--gray-600);
+  font-size:14px
+}
+.footer-links{
   display:flex;
-  flex-direction:column;
-  align-items:center;
   justify-content:center;
-  height:100%;
-  gap:15px;
-  color:var(--gray-600)
+  gap:30px;
+  margin-bottom:20px;
+  flex-wrap:wrap
 }
-.empty-icon{font-size:48px}
-
-/* Loading */
-.loading{
-  display:inline-block;
-  animation:spin 1s linear infinite
+.footer-link{
+  color:var(--primary);
+  cursor:pointer;
+  text-decoration:none;
+  font-weight:600
 }
-@keyframes spin{
-  0%{transform:rotate(0deg)}
-  100%{transform:rotate(360deg)}
-}
-
-/* Scrollbar */
-::-webkit-scrollbar{width:8px}
-::-webkit-scrollbar-track{background:var(--gray-100)}
-::-webkit-scrollbar-thumb{background:var(--primary);border-radius:4px}
-::-webkit-scrollbar-thumb:hover{background:var(--primary-dark)}
 </style>
 </head>
 <body>
@@ -530,314 +560,573 @@ nav{
 <nav>
   <div class="container">
     <div class="nav-content">
-      <div class="nav-links">
-        <span class="nav-link" onclick="showPage('home')">🏠 الرئيسية</span>
-        <span class="nav-link" onclick="showPage('help')">💬 اطلب المساعدة</span>
-        <span class="nav-link" onclick="showPage('info')">📚 المعلومات</span>
-      </div>
       <div class="logo-section" onclick="showPage('home')">
         <span>إسألني</span>
         <div class="logo-box">؟</div>
       </div>
-      <div>
-        <button class="auth-btn" id="authBtn" onclick="showAuthModal()">دخول</button>
+      <div class="nav-links">
+        <span class="nav-link active" onclick="showPageNav('home')">🏠 الرئيسية</span>
+        <span class="nav-link" onclick="showPageNav('institutions')">🏛️ المؤسسات</span>
+        <span class="nav-link" onclick="showPageNav('programs')">📚 البرامج</span>
+        <span class="nav-link" onclick="showPageNav('admission')">📊 التوجيه</span>
+        <span class="nav-link" onclick="showPageNav('careers')">💼 المسارات</span>
+        <span class="nav-link" onclick="showPageNav('costs')">💰 التكاليف</span>
       </div>
+      <button class="auth-btn" id="authBtn" onclick="showAuthModal()">دخول</button>
     </div>
   </div>
 </nav>
 
-<!-- Auth Modal -->
-<div class="modal" id="authModal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeAuthModal()">✕</span>
-    <div class="modal-title" id="authTitle">دخول الطالب</div>
-    <div class="error-msg" id="errorMsg"></div>
-    
-    <div id="loginForm">
-      <div class="form-group">
-        <label class="form-label">البريد الإلكتروني</label>
-        <input type="email" class="form-input" id="loginEmail" placeholder="example@email.com">
-      </div>
-      <div class="form-group">
-        <label class="form-label">كلمة المرور</label>
-        <input type="password" class="form-input" id="loginPassword" placeholder="●●●●●●">
-      </div>
-      <button class="form-btn" onclick="handleLogin()">دخول</button>
-      <div class="toggle-auth">
-        ليس لديك حساب؟ <a onclick="toggleAuthMode()">إنشاء حساب</a>
-      </div>
-    </div>
-
-    <div id="signupForm" style="display:none">
-      <div class="form-group">
-        <label class="form-label">الاسم الكامل</label>
-        <input type="text" class="form-input" id="signupName" placeholder="اسمك">
-      </div>
-      <div class="form-group">
-        <label class="form-label">البريد الإلكتروني</label>
-        <input type="email" class="form-input" id="signupEmail" placeholder="example@email.com">
-      </div>
-      <div class="form-group">
-        <label class="form-label">كلمة المرور</label>
-        <input type="password" class="form-input" id="signupPassword" placeholder="●●●●●●">
-      </div>
-      <div class="form-group">
-        <label class="form-label" style="margin-bottom:10px">أنت</label>
-        <select class="form-input" id="userType">
-          <option value="student">طالب/ة - أبحث عن مساعدة</option>
-          <option value="helper">متطوع - أساعد الآخرين</option>
-        </select>
-      </div>
-      <button class="form-btn" onclick="handleSignup()">إنشاء حساب</button>
-      <div class="toggle-auth">
-        لديك حساب؟ <a onclick="toggleAuthMode()">دخول</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Home Page -->
+<!-- HOME PAGE -->
 <div class="page active" id="homePage">
-  <div class="container">
-    <div class="hero">
-      <div class="hero-title">إسألني</div>
-      <div class="hero-subtitle">منصة تواصل مباشرة بين الطلاب والمتطوعين للمساعدة في الأسئلة الجامعية</div>
-      <div class="hero-buttons">
-        <button class="btn btn-primary" onclick="startAsStudent()">
-          <i class="ti ti-arrow-left"></i> أنا طالب
-        </button>
-        <button class="btn btn-secondary" onclick="startAsHelper()">
-          <i class="ti ti-arrow-left"></i> أنا متطوع
-        </button>
+  <div class="hero">
+    <div class="hero-title">إسألني</div>
+    <div class="hero-subtitle">منصتك الشاملة للمعلومات الجامعية التونسية - كل ما تحتاجه عن الدراسة والتخصصات والجامعات</div>
+  </div>
+
+  <div class="section container">
+    <div class="section-title">لماذا إسألني؟</div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">📖</div>
+        <div class="card-title">معلومات شاملة</div>
+        <div class="card-text">كل معلومات جامعات سوسة والبرامج والتخصصات والمعدلات في مكان واحد</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <div class="card-title">اطرح أسئلتك</div>
+        <div class="card-text">تحدث مع متطوعين متخصصين يساعدونك على اتخاذ القرار الصحيح</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <div class="card-title">توجيه شخصي</div>
+        <div class="card-text">احصل على نصائح وإرشادات شخصية بناءً على معدلك والتخصص المطلوب</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <div class="card-title">بيانات موثوقة</div>
+        <div class="card-text">كل المعلومات من مصادر رسمية وموثوقة من جامعة سوسة</div>
       </div>
     </div>
+  </div>
 
-    <div class="info-section">
-      <div class="info-title">كيف تعمل المنصة؟</div>
+  <div class="section" style="background:var(--gray-50)">
+    <div class="container">
+      <div class="section-title">إحصائيات جامعة سوسة</div>
       <div class="info-grid">
-        <div class="info-card">
-          <div class="info-icon">✍️</div>
-          <div class="info-card-title">اطرح سؤالك</div>
-          <div class="info-card-text">قم بكتابة سؤالك أو استفسارك عن الدراسة والجامعات والتخصصات</div>
+        <div class="info-item">
+          <div class="info-number">17</div>
+          <div class="info-label">مؤسسة عامة</div>
         </div>
-        <div class="info-card">
-          <div class="info-icon">⏳</div>
-          <div class="info-card-title">انتظر متطوع</div>
-          <div class="info-card-text">يتصل بك أحد المتطوعين المختصين ويجيب على أسئلتك مباشرة</div>
+        <div class="info-item">
+          <div class="info-number">4+</div>
+          <div class="info-label">جامعات خاصة</div>
         </div>
-        <div class="info-card">
-          <div class="info-icon">💡</div>
-          <div class="info-card-title">احصل على الإجابة</div>
-          <div class="info-card-text">تحصل على إجابات مفصلة وموثوقة تساعدك على اتخاذ القرار الصحيح</div>
+        <div class="info-item">
+          <div class="info-number">25,000+</div>
+          <div class="info-label">طالب مسجل</div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Help Page (Chat) -->
-<div class="page" id="helpPage">
-  <div class="container">
-    <div class="chat-container">
-      <div class="chat-main">
-        <div class="chat-header">💬 اطلب المساعدة</div>
-        <div class="chat-messages" id="chatMessages">
-          <div class="empty-state">
-            <div class="empty-icon">👋</div>
-            <div>مرحباً! ابدأ محادثتك الآن</div>
-          </div>
-        </div>
-        <div class="chat-input">
-          <button onclick="sendMessage()">إرسال</button>
-          <input type="text" id="messageInput" placeholder="اكتب رسالتك..." onkeypress="if(event.key==='Enter')sendMessage()">
-        </div>
-      </div>
-
-      <div class="helpers-panel">
-        <div class="helpers-title">المتطوعون المتصلون</div>
-        <div class="helpers-list" id="helpersList">
-          <div class="empty-state">
-            <div class="empty-icon">😴</div>
-            <div style="font-size:12px">لا يوجد متطوعون الآن</div>
-          </div>
+        <div class="info-item">
+          <div class="info-number">100+</div>
+          <div class="info-label">برنامج أكاديمي</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Info Page -->
-<div class="page" id="infoPage">
-  <div class="container">
-    <div style="margin:40px 0">
-      <h1 style="font-size:32px;color:var(--primary);margin-bottom:30px">معلومات جامعة سوسة</h1>
-      
-      <div class="info-grid" style="grid-template-columns:repeat(auto-fit, minmax(300px, 1fr))">
-        <div class="info-card">
-          <div class="info-icon">🎓</div>
-          <div class="info-card-title">كلية الطب</div>
-          <div class="info-card-text">كلية الطب بسوسة - مؤسسة 1974<br>معدل الالتحاق: 17.0–17.4<br>الدراسة: 7 سنوات مجاني</div>
-        </div>
+<!-- INSTITUTIONS PAGE -->
+<div class="page" id="institutionsPage">
+  <div class="section container">
+    <div class="section-title">المؤسسات الجامعية</div>
+    <div class="section-subtitle">جميع كليات ومعاهد جامعة سوسة</div>
 
-        <div class="info-card">
-          <div class="info-icon">💻</div>
-          <div class="info-card-title">المدرسة الوطنية للمهندسين</div>
-          <div class="info-card-text">متخصصة في الإعلامية والمكاترونيكا<br>معدل الالتحاق: 13.2–14.2<br>الدراسة: 5 سنوات</div>
-        </div>
+    <!-- Faculties -->
+    <h3 style="font-size:22px;color:var(--primary);margin:30px 0 20px;font-weight:700">الكليات (4)</h3>
+    <div class="grid" id="facultiesGrid"></div>
 
-        <div class="info-card">
-          <div class="info-icon">📱</div>
-          <div class="info-card-title">المعهد العالي للإعلامية</div>
-          <div class="info-card-text">ISITCom - حمام سوسة<br>متخصص في الشبكات والاتصالات<br>برامج مختلفة 3 سنوات</div>
-        </div>
+    <!-- Schools -->
+    <h3 style="font-size:22px;color:var(--primary);margin:30px 0 20px;font-weight:700">المدارس العليا (4)</h3>
+    <div class="grid" id="schoolsGrid"></div>
 
-        <div class="info-card">
-          <div class="info-icon">⚖️</div>
-          <div class="info-card-title">كلية الحقوق</div>
-          <div class="info-card-text">الحقوق والعلوم السياسية<br>معدل الالتحاق: 11.9<br>إجازة 3 سنوات</div>
-        </div>
+    <!-- Institutes -->
+    <h3 style="font-size:22px;color:var(--primary);margin:30px 0 20px;font-weight:700">المعاهد العليا (9+)</h3>
+    <div class="grid" id="institutesGrid"></div>
+  </div>
+</div>
 
-        <div class="info-card">
-          <div class="info-icon">💼</div>
-          <div class="info-card-title">المعهد العالي للإدارة</div>
-          <div class="info-card-text">إدارة الأعمال والتسويق<br>معدل الالتحاق: 12.2<br>برامج متنوعة 3 سنوات</div>
-        </div>
+<!-- PROGRAMS PAGE -->
+<div class="page" id="programsPage">
+  <div class="section container">
+    <div class="section-title">البرامج الأكاديمية</div>
+    <div class="section-subtitle">جميع البرامج والدرجات المقدمة</div>
 
-        <div class="info-card">
-          <div class="info-icon">📖</div>
-          <div class="info-card-title">كلية الآداب</div>
-          <div class="info-card-text">اللغات والآداب والعلوم الإنسانية<br>معدل الالتحاق: 10.9<br>متخصصات مختلفة</div>
-        </div>
+    <div style="margin:30px 0">
+      <div class="table-container">
+        <table id="programsTable">
+          <thead>
+            <tr>
+              <th>البرنامج</th>
+              <th>المؤسسة</th>
+              <th>المستوى</th>
+              <th>المدة</th>
+              <th>اللغة</th>
+              <th>الرسوم</th>
+            </tr>
+          </thead>
+          <tbody id="programsBody"></tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
+
+<!-- ADMISSION PAGE -->
+<div class="page" id="admissionPage">
+  <div class="section container">
+    <div class="section-title">نظام التوجيه والالتحاق</div>
+    <div class="section-subtitle">معدلات الالتحاق والشروط</div>
+
+    <div style="background:var(--gray-50);padding:30px;border-radius:var(--radius);margin-bottom:30px">
+      <h3 style="color:var(--primary);margin-bottom:15px;font-weight:700">احسب فرصتك</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
+        <div class="form-group">
+          <label class="form-label">معدل البكالوريا (من 20)</label>
+          <input type="number" class="form-input" id="calcScore" min="0" max="20" step="0.01" placeholder="مثال: 14.50">
+        </div>
+        <div class="form-group">
+          <label class="form-label">قسم البكالوريا</label>
+          <select class="form-input" id="calcSection">
+            <option value="">اختر القسم</option>
+            <option value="math">رياضيات</option>
+            <option value="exp">علوم تجريبية</option>
+            <option value="tech">علوم تقنية</option>
+            <option value="eco">اقتصاد</option>
+            <option value="letters">آداب</option>
+          </select>
+        </div>
+      </div>
+      <button class="form-btn" onclick="calculateAdmission()">احسب الخيارات المتاحة</button>
+      <div id="calcResult" style="margin-top:20px"></div>
+    </div>
+
+    <h3 style="color:var(--primary);margin:30px 0 15px;font-weight:700">معدلات الالتحاق 2024</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>البرنامج</th>
+            <th>المؤسسة</th>
+            <th>المعدل المطلوب</th>
+            <th>الاتجاه</th>
+          </tr>
+        </thead>
+        <tbody id="admissionTable"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- CAREERS PAGE -->
+<div class="page" id="careersPage">
+  <div class="section container">
+    <div class="section-title">المسارات المهنية والفرص</div>
+    <div class="section-subtitle">الراتب ومعدل التوظيف حسب التخصص</div>
+
+    <div class="table-container">
+      <table id="careersTable">
+        <thead>
+          <tr>
+            <th>التخصص</th>
+            <th>الراتب الشهري (د.ت)</th>
+            <th>معدل التوظيف</th>
+            <th>القطاعات</th>
+          </tr>
+        </thead>
+        <tbody id="careersBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- COSTS PAGE -->
+<div class="page" id="costsPage">
+  <div class="section container">
+    <div class="section-title">تكاليف الدراسة والمعيشة</div>
+    <div class="section-subtitle">رسوم الدراسة وتكاليف المعيشة في سوسة</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <div class="card-title">رسوم الدراسة</div>
+        <div class="card-text"><strong>المؤسسات العامة:</strong> مجاني تماماً<br><strong>المؤسسات الخاصة:</strong> 800-2000 د.ت/السنة</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <div class="card-title">السكن</div>
+        <div class="card-text"><strong>سكن جامعي:</strong> 30-80 د.ت/شهر<br><strong>شقة خاصة:</strong> 250-500 د.ت/شهر</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍽️</div>
+        <div class="card-title">الطعام</div>
+        <div class="card-text"><strong>مطعم جامعي:</strong> 50-100 د.ت/شهر<br><strong>مستقل:</strong> 150-300 د.ت/شهر</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚌</div>
+        <div class="card-title">النقل</div>
+        <div class="card-text"><strong>حافلة شهري:</strong> 15-25 د.ت<br><strong>سيارة خاصة:</strong> 80-150 د.ت</div>
+      </div>
+    </div>
+
+    <div style="background:var(--gray-50);padding:30px;border-radius:var(--radius);margin-top:30px">
+      <h3 style="color:var(--primary);margin-bottom:20px;font-weight:700">تكلفة المعيشة الشهرية</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>البند</th>
+              <th>الحد الأدنى</th>
+              <th>المتوسط</th>
+              <th>المريح</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>السكن</strong></td>
+              <td>30 د.ت</td>
+              <td>250 د.ت</td>
+              <td>500 د.ت</td>
+            </tr>
+            <tr>
+              <td><strong>الطعام</strong></td>
+              <td>50 د.ت</td>
+              <td>150 د.ت</td>
+              <td>350 د.ت</td>
+            </tr>
+            <tr>
+              <td><strong>النقل</strong></td>
+              <td>15 د.ت</td>
+              <td>40 د.ت</td>
+              <td>80 د.ت</td>
+            </tr>
+            <tr>
+              <td><strong>الدراسة</strong></td>
+              <td>40 د.ت</td>
+              <td>80 د.ت</td>
+              <td>150 د.ت</td>
+            </tr>
+            <tr>
+              <td><strong>الهاتف والإنترنت</strong></td>
+              <td>20 د.ت</td>
+              <td>45 د.ت</td>
+              <td>80 د.ت</td>
+            </tr>
+            <tr style="font-weight:700;background:var(--gold);color:var(--primary)">
+              <td>الإجمالي الشهري</td>
+              <td>~175 د.ت</td>
+              <td>~565 د.ت</td>
+              <td>~1,160 د.ت</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal" id="authModal">
+  <div style="position:relative;width:100%">
+    <span class="modal-close" onclick="closeAuthModal()">✕</span>
+    <div class="modal-content">
+      <div class="modal-title" id="modalTitle">دخول</div>
+      <div id="loginForm">
+        <div class="form-group">
+          <label class="form-label">البريد الإلكتروني</label>
+          <input type="email" class="form-input" id="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">كلمة المرور</label>
+          <input type="password" class="form-input" id="password">
+        </div>
+        <button class="form-btn" style="width:100%" onclick="handleLogin()">دخول</button>
+        <p style="text-align:center;margin-top:15px;font-size:14px">ليس لديك حساب؟ <a onclick="toggleAuth()" style="color:var(--primary);cursor:pointer;font-weight:700">إنشاء حساب</a></p>
+      </div>
+
+      <div id="signupForm" style="display:none">
+        <div class="form-group">
+          <label class="form-label">الاسم الكامل</label>
+          <input type="text" class="form-input" id="name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">البريد الإلكتروني</label>
+          <input type="email" class="form-input" id="signupEmail">
+        </div>
+        <div class="form-group">
+          <label class="form-label">كلمة المرور</label>
+          <input type="password" class="form-input" id="signupPassword">
+        </div>
+        <div class="form-group">
+          <label class="form-label">أنت</label>
+          <select class="form-input" id="userType">
+            <option value="student">طالب - أبحث عن معلومات</option>
+            <option value="helper">متطوع - أساعد الآخرين</option>
+          </select>
+        </div>
+        <button class="form-btn" style="width:100%" onclick="handleSignup()">إنشاء حساب</button>
+        <p style="text-align:center;margin-top:15px;font-size:14px">لديك حساب؟ <a onclick="toggleAuth()" style="color:var(--primary);cursor:pointer;font-weight:700">دخول</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-header" onclick="toggleChat()">
+    💬 اطرح سؤالك
+    <button class="chat-minimize" onclick="toggleChatMinimize(event)">−</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="empty-state">
+      <div class="empty-icon">👋</div>
+      <div>ابدأ محادثتك الآن</div>
+    </div>
+  </div>
+  <div class="chat-input">
+    <button onclick="sendChatMessage()">إرسال</button>
+    <input type="text" id="chatInput" placeholder="اسأل..." onkeypress="if(event.key==='Enter')sendChatMessage()">
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a class="footer-link" onclick="showPageNav('home')">الرئيسية</a>
+    <a class="footer-link" onclick="showPageNav('institutions')">المؤسسات</a>
+    <a class="footer-link" onclick="showPageNav('programs')">البرامج</a>
+    <a class="footer-link" onclick="showPageNav('admission')">التوجيه</a>
+    <a class="footer-link" onclick="showPageNav('careers')">المسارات</a>
+  </div>
+  <div><strong>إسألني</strong> © 2024 - منصة المعلومات الجامعية الشاملة</div>
+  <div style="margin-top:10px;font-size:12px">بيانات من جامعة سوسة الرسمية - جميع الحقوق محفوظة</div>
+</footer>
 
 <script>
-// Simple in-memory database (replace with backend)
+// Data
+const institutions = [
+  {id:1,name:'كلية الطب بن الجزار',type:'faculty',desc:'كلية طب عريقة مؤسسة 1974',icon:'🏥',students:'4,800',programs:5},
+  {id:2,name:'كلية الحقوق والعلوم السياسية',type:'faculty',desc:'متخصصة في القانون والإدارة',icon:'⚖️',students:'6,500',programs:6},
+  {id:3,name:'كلية الآداب والعلوم الإنسانية',type:'faculty',desc:'اللغات والآداب والعلوم الإنسانية',icon:'📚',students:'5,500',programs:10},
+  {id:4,name:'كلية العلوم الاقتصادية والإدارة',type:'faculty',desc:'الاقتصاد والإدارة والمالية',icon:'💼',students:'5,000',programs:8},
+  {id:5,name:'المدرسة الوطنية للمهندسين',type:'school',desc:'هندسة إعلامية ومكاترونيكا',icon:'🔧',students:'1,200',programs:5},
+  {id:6,name:'المعهد العالي للإعلامية',type:'institute',desc:'ISITCom - الشبكات والاتصالات',icon:'💻',students:'2,500',programs:9},
+  {id:7,name:'المعهد العالي للإدارة',type:'institute',desc:'إدارة الأعمال والتسويق',icon:'🏢',students:'3,200',programs:8},
+];
+
+const programs = [
+  {name:'الطب',institution:'كلية الطب',level:'دكتوراه (7)',duration:'7 سنوات',lang:'فرنسي',fees:'مجاني'},
+  {name:'طب الأسنان',institution:'كلية الطب',level:'دكتوراه',duration:'6 سنوات',lang:'فرنسي',fees:'مجاني'},
+  {name:'هندسة الإعلامية',institution:'المدرسة الوطنية',level:'هندسة',duration:'5 سنوات',lang:'فرنسي',fees:'مجاني'},
+  {name:'المكاترونيكا',institution:'المدرسة الوطنية',level:'هندسة',duration:'5 سنوات',lang:'فرنسي',fees:'مجاني'},
+  {name:'إعلامية وشبكات',institution:'المعهد العالي للإعلامية',level:'إجازة',duration:'3 سنوات',lang:'فرنسي',fees:'مجاني'},
+  {name:'الحقوق',institution:'كلية الحقوق',level:'إجازة',duration:'3 سنوات',lang:'عربي',fees:'مجاني'},
+  {name:'العلوم السياسية',institution:'كلية الحقوق',level:'إجازة',duration:'3 سنوات',lang:'عربي',fees:'مجاني'},
+  {name:'اللغة العربية',institution:'كلية الآداب',level:'إجازة',duration:'3 سنوات',lang:'عربي',fees:'مجاني'},
+  {name:'الاقتصاد',institution:'كلية الاقتصاد',level:'إجازة',duration:'3 سنوات',lang:'فرنسي',fees:'مجاني'},
+  {name:'الإدارة',institution:'المعهد العالي للإدارة',level:'إجازة',duration:'3 سنوات',lang:'فرنسي',fees:'مجاني'},
+];
+
+const admissionData = [
+  {program:'الطب',institution:'كلية الطب',score:'17.4',trend:'↑'},
+  {program:'الهندسة الإعلامية',institution:'المدرسة الوطنية',score:'14.2',trend:'→'},
+  {program:'الإعلامية',institution:'المعهد العالي',score:'13.2',trend:'↑'},
+  {program:'الحقوق',institution:'كلية الحقوق',score:'11.9',trend:'→'},
+  {program:'الإدارة',institution:'المعهد العالي للإدارة',score:'12.2',trend:'↑'},
+];
+
+const careers = [
+  {specialty:'مهندس إعلامية',salary:'1,800–3,500 د.ت',employment:'88%',sectors:'IT، اتصالات، بنوك'},
+  {specialty:'طبيب',salary:'2,500–6,000 د.ت',employment:'98%',sectors:'مستشفيات عامة وخاصة'},
+  {specialty:'متخصص اتصالات',salary:'1,400–3,000 د.ت',employment:'82%',sectors:'اتصالات، إنترنت'},
+  {specialty:'محامي',salary:'900–3,000 د.ت',employment:'70%',sectors:'محاكم، شركات'},
+  {specialty:'مدير',salary:'1,000–2,500 د.ت',employment:'75%',sectors:'شركات، إدارة عامة'},
+];
+
+// State
 let currentUser = null;
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let messages = JSON.parse(localStorage.getItem('messages')) || [];
-let helpers = JSON.parse(localStorage.getItem('helpers')) || [];
-let selectedHelper = null;
+let helpers = [];
 
-// Generate ID
-function generateId() {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+// Navigation
+function showPageNav(pageName) {
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  event.target.classList.add('active');
+  showPage(pageName);
 }
 
-// Show/Hide Pages
 function showPage(pageName) {
-  if (!currentUser && pageName !== 'home' && pageName !== 'info') {
-    showAuthModal();
-    return;
-  }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(pageName + 'Page').classList.add('active');
+  
+  if (pageName === 'institutions') loadInstitutions();
+  if (pageName === 'programs') loadPrograms();
+  if (pageName === 'admission') loadAdmission();
+  if (pageName === 'careers') loadCareers();
+  
+  window.scrollTo(0, 0);
 }
 
-// Auth Modal
+// Load Data
+function loadInstitutions() {
+  const faculties = institutions.filter(i => i.type === 'faculty');
+  const schools = institutions.filter(i => i.type === 'school');
+  const insts = institutions.filter(i => i.type === 'institute');
+
+  document.getElementById('facultiesGrid').innerHTML = faculties.map(i => createCard(i)).join('');
+  document.getElementById('schoolsGrid').innerHTML = schools.map(i => createCard(i)).join('');
+  document.getElementById('institutesGrid').innerHTML = insts.map(i => createCard(i)).join('');
+}
+
+function createCard(inst) {
+  return `
+    <div class="card" onclick="showDetails('${inst.name}')">
+      <div class="card-icon">${inst.icon}</div>
+      <div class="card-title">${inst.name}</div>
+      <div class="card-text">${inst.desc}</div>
+      <div style="margin-top:15px;font-size:12px;color:var(--gray-600)">
+        <div>👥 ${inst.students} طالب</div>
+        <div>📚 ${inst.programs} برامج</div>
+      </div>
+    </div>
+  `;
+}
+
+function loadPrograms() {
+  const html = programs.map(p => `
+    <tr>
+      <td><strong>${p.name}</strong></td>
+      <td>${p.institution}</td>
+      <td>${p.level}</td>
+      <td>${p.duration}</td>
+      <td>${p.lang}</td>
+      <td><span class="badge badge-free">${p.fees}</span></td>
+    </tr>
+  `).join('');
+  document.getElementById('programsBody').innerHTML = html;
+}
+
+function loadAdmission() {
+  const html = admissionData.map(a => `
+    <tr>
+      <td><strong>${a.program}</strong></td>
+      <td>${a.institution}</td>
+      <td><span class="badge badge-high">${a.score}</span></td>
+      <td>${a.trend}</td>
+    </tr>
+  `).join('');
+  document.getElementById('admissionTable').innerHTML = html;
+}
+
+function loadCareers() {
+  const html = careers.map(c => `
+    <tr>
+      <td><strong>${c.specialty}</strong></td>
+      <td>${c.salary}</td>
+      <td><strong style="color:var(--primary)">${c.employment}</strong></td>
+      <td>${c.sectors}</td>
+    </tr>
+  `).join('');
+  document.getElementById('careersBody').innerHTML = html;
+}
+
+function calculateAdmission() {
+  const score = parseFloat(document.getElementById('calcScore').value);
+  if (!score) {
+    alert('أدخل معدلك');
+    return;
+  }
+  
+  let options = [];
+  if (score >= 14.2) options.push('هندسة الإعلامية - معدل مرتفع ✓');
+  if (score >= 13.2) options.push('الإعلامية والشبكات - معدل جيد ✓');
+  if (score >= 12.2) options.push('الإدارة - معدل متوسط ✓');
+  if (score >= 11.9) options.push('الحقوق - معدل متوسط ✓');
+  
+  if (options.length === 0) {
+    options.push('قد لا تتطابق مع المعدلات الحالية - تحدث مع متطوع للمزيد من الخيارات');
+  }
+  
+  document.getElementById('calcResult').innerHTML = `
+    <div style="background:var(--gold);padding:20px;border-radius:8px;color:var(--primary)">
+      <strong>الخيارات المتاحة لك:</strong>
+      <ul style="margin-top:10px;list-style:none">
+        ${options.map(o => `<li style="padding:5px 0">✓ ${o}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+}
+
+// Auth
 function showAuthModal() {
   document.getElementById('authModal').classList.add('active');
 }
 
 function closeAuthModal() {
   document.getElementById('authModal').classList.remove('active');
-  document.getElementById('errorMsg').style.display = 'none';
 }
 
-function toggleAuthMode() {
-  document.getElementById('loginForm').style.display = 
-    document.getElementById('loginForm').style.display === 'none' ? 'block' : 'none';
-  document.getElementById('signupForm').style.display = 
-    document.getElementById('signupForm').style.display === 'none' ? 'block' : 'none';
-  document.getElementById('errorMsg').style.display = 'none';
+function toggleAuth() {
+  document.getElementById('loginForm').style.display = document.getElementById('loginForm').style.display === 'none' ? 'block' : 'none';
+  document.getElementById('signupForm').style.display = document.getElementById('signupForm').style.display === 'none' ? 'block' : 'none';
+  document.getElementById('modalTitle').textContent = document.getElementById('loginForm').style.display === 'none' ? 'إنشاء حساب' : 'دخول';
 }
 
-function showError(msg) {
-  const errorEl = document.getElementById('errorMsg');
-  errorEl.textContent = msg;
-  errorEl.style.display = 'block';
-}
-
-// Auth Handlers
 function handleLogin() {
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
-
-  if (!email || !password) {
-    showError('الرجاء ملء جميع الحقول');
-    return;
-  }
-
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  
   const user = users.find(u => u.email === email && u.password === password);
   if (user) {
     currentUser = user;
     localStorage.setItem('currentUser', JSON.stringify(user));
     closeAuthModal();
     updateAuthBtn();
-    showPage('help');
   } else {
-    showError('بريد إلكتروني أو كلمة مرور غير صحيحة');
+    alert('بريد أو كلمة مرور غير صحيحة');
   }
 }
 
 function handleSignup() {
-  const name = document.getElementById('signupName').value;
+  const name = document.getElementById('name').value;
   const email = document.getElementById('signupEmail').value;
   const password = document.getElementById('signupPassword').value;
   const type = document.getElementById('userType').value;
-
+  
   if (!name || !email || !password) {
-    showError('الرجاء ملء جميع الحقول');
+    alert('أكمل جميع الحقول');
     return;
   }
-
-  if (users.find(u => u.email === email)) {
-    showError('البريد الإلكتروني مسجل بالفعل');
-    return;
-  }
-
-  const newUser = {
-    id: generateId(),
-    name,
-    email,
-    password,
-    type,
-    joinedAt: new Date().toISOString(),
-    status: type === 'helper' ? 'online' : 'inactive'
-  };
-
-  users.push(newUser);
+  
+  const user = {id: Date.now(), name, email, password, type};
+  users.push(user);
   localStorage.setItem('users', JSON.stringify(users));
-
-  if (type === 'helper') {
-    helpers.push(newUser);
-    localStorage.setItem('helpers', JSON.stringify(helpers));
-  }
-
-  currentUser = newUser;
-  localStorage.setItem('currentUser', JSON.stringify(newUser));
+  
+  currentUser = user;
+  localStorage.setItem('currentUser', JSON.stringify(user));
   closeAuthModal();
   updateAuthBtn();
-  showPage('help');
-}
-
-function handleLogout() {
-  currentUser = null;
-  localStorage.removeItem('currentUser');
-  updateAuthBtn();
-  showPage('home');
 }
 
 function updateAuthBtn() {
   const btn = document.getElementById('authBtn');
   if (currentUser) {
     btn.textContent = `${currentUser.name} (خروج)`;
-    btn.onclick = handleLogout;
+    btn.onclick = () => {
+      currentUser = null;
+      localStorage.removeItem('currentUser');
+      updateAuthBtn();
+    };
     btn.classList.add('logout');
-    refreshHelpersList();
-    loadMessages();
   } else {
     btn.textContent = 'دخول';
     btn.onclick = showAuthModal;
@@ -845,175 +1134,69 @@ function updateAuthBtn() {
   }
 }
 
-// Start buttons
-function startAsStudent() {
-  if (!currentUser || currentUser.type !== 'student') {
+// Chat
+function sendChatMessage() {
+  if (!currentUser) {
     showAuthModal();
-    document.getElementById('userType').value = 'student';
-  } else {
-    showPage('help');
+    return;
   }
-}
-
-function startAsHelper() {
-  if (!currentUser || currentUser.type !== 'helper') {
-    showAuthModal();
-    document.getElementById('userType').value = 'helper';
-  } else {
-    showPage('help');
-  }
-}
-
-// Chat Functions
-function sendMessage() {
-  const input = document.getElementById('messageInput');
+  
+  const input = document.getElementById('chatInput');
   const text = input.value.trim();
-
   if (!text) return;
-
-  const message = {
-    id: generateId(),
-    sender: currentUser.id,
-    senderName: currentUser.name,
-    senderType: currentUser.type,
-    text,
-    timestamp: new Date().toISOString(),
-    helper: selectedHelper ? selectedHelper.id : null
-  };
-
-  messages.push(message);
+  
+  const msg = {user: currentUser.name, text, time: new Date().toLocaleTimeString()};
+  messages.push(msg);
   localStorage.setItem('messages', JSON.stringify(messages));
-
+  
+  addChatMessage(currentUser.name, text, true);
   input.value = '';
-  loadMessages();
-
-  // Auto-match helper for students
-  if (currentUser.type === 'student' && helpers.length > 0) {
-    const onlineHelpers = helpers.filter(h => h.status === 'online');
-    if (onlineHelpers.length > 0) {
-      selectedHelper = onlineHelpers[Math.floor(Math.random() * onlineHelpers.length)];
-      addSystemMessage('تم ربطك مع ' + selectedHelper.name);
-    }
-  }
-}
-
-function addSystemMessage(text) {
-  const chatMessages = document.getElementById('chatMessages');
-  const msgDiv = document.createElement('div');
-  msgDiv.className = 'message system';
-  msgDiv.innerHTML = `<div class="message-bubble">${text}</div>`;
-  chatMessages.appendChild(msgDiv);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function loadMessages() {
-  const chatMessages = document.getElementById('chatMessages');
   
-  if (!currentUser) return;
-
-  let relevantMessages = messages.filter(m => 
-    (m.sender === currentUser.id || m.helper === currentUser.id) ||
-    (currentUser.type === 'student' && m.sender === currentUser.id)
-  );
-
-  if (relevantMessages.length === 0) {
-    chatMessages.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">👋</div>
-        <div>ابدأ محادثتك الآن</div>
-      </div>
-    `;
-    return;
-  }
-
-  chatMessages.innerHTML = relevantMessages.map(msg => `
-    <div class="message ${msg.sender === currentUser.id ? 'user' : 'helper'}">
-      <div class="message-avatar">${msg.senderName[0]}</div>
-      <div class="message-bubble">
-        <strong>${msg.senderName}</strong><br>
-        ${msg.text}
-      </div>
-    </div>
-  `).join('');
-
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  // Auto-reply
+  setTimeout(() => {
+    addChatMessage('المساعد', 'شكراً على سؤالك! سيرد عليك متطوع قريباً...', false);
+  }, 500);
 }
 
-function refreshHelpersList() {
-  const list = document.getElementById('helpersList');
+function addChatMessage(name, text, isUser) {
+  const container = document.getElementById('chatMessages');
+  if (container.querySelector('.empty-state')) {
+    container.innerHTML = '';
+  }
   
-  if (currentUser.type !== 'student') {
-    list.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">👥</div>
-        <div style="font-size:12px">أنت متطوع</div>
-      </div>
-    `;
-    return;
-  }
-
-  const onlineHelpers = helpers.filter(h => h.status === 'online');
-
-  if (onlineHelpers.length === 0) {
-    list.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">😴</div>
-        <div style="font-size:12px">لا يوجد متطوعون الآن</div>
-      </div>
-    `;
-    return;
-  }
-
-  list.innerHTML = onlineHelpers.map(helper => `
-    <div class="helper-item" onclick="selectHelper('${helper.id}')">
-      <div class="helper-name">
-        <span class="status-badge"></span> ${helper.name}
-      </div>
-      <div class="helper-status">متطوع متخصص</div>
-    </div>
-  `).join('');
+  const div = document.createElement('div');
+  div.className = `message ${isUser ? 'user' : 'helper'}`;
+  div.innerHTML = `
+    <div class="message-avatar">${name[0]}</div>
+    <div class="message-bubble">${text}</div>
+  `;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
 }
 
-function selectHelper(helperId) {
-  selectedHelper = helpers.find(h => h.id === helperId);
-  addSystemMessage('تم الاتصال مع ' + selectedHelper.name);
-  refreshHelpersList();
+function toggleChat() {
+  document.getElementById('chatWidget').classList.toggle('minimized');
 }
 
-// Set helper online
-setInterval(() => {
-  if (currentUser && currentUser.type === 'helper') {
-    const helper = helpers.find(h => h.id === currentUser.id);
-    if (helper) {
-      helper.status = 'online';
-      localStorage.setItem('helpers', JSON.stringify(helpers));
-      refreshHelpersList();
-    }
-  }
-}, 5000);
+function toggleChatMinimize(e) {
+  e.stopPropagation();
+  toggleChat();
+}
 
-// Auto-refresh
-setInterval(() => {
-  if (document.getElementById('chatMessages').closest('.page.active')) {
-    loadMessages();
-    refreshHelpersList();
-  }
-}, 2000);
+function showDetails(name) {
+  const inst = institutions.find(i => i.name === name);
+  if (!inst) return;
+  alert(`${inst.name}\n\n${inst.desc}\n\nالطلاب: ${inst.students}\nالبرامج: ${inst.programs}`);
+}
 
 // Initialize
 window.addEventListener('load', () => {
   const saved = localStorage.getItem('currentUser');
-  if (saved) {
-    currentUser = JSON.parse(saved);
-  }
+  if (saved) currentUser = JSON.parse(saved);
   updateAuthBtn();
-});
-
-// Prevent default form submission
-document.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter' && e.target.id === 'messageInput') {
-    e.preventDefault();
-  }
+  loadPrograms();
+  loadAdmission();
+  loadCareers();
 });
 </script>
 
