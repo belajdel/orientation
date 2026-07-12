@@ -624,6 +624,7 @@ footer{
         <span class="nav-link" onclick="showPageNav(event,'programs')">📚 البرامج</span>
         <span class="nav-link" onclick="showPageNav(event,'careers')">💼 المسارات</span>
         <span class="nav-link" onclick="showPageNav(event,'costs')">💰 التكاليف</span>
+        <span class="nav-link" id="messagesNavLink" onclick="showPageNav(event,'messages')" style="display:none">📥 الرسائل <span id="unreadBadge" style="display:none;background:var(--danger,#e63946);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-right:4px"></span></span>
       </div>
       <button class="auth-btn" id="authBtn" onclick="showAuthModal()">دخول</button>
     </div>
@@ -879,7 +880,29 @@ footer{
   </div>
 </div>
 
-<!-- CHAT WIDGET -->
+<!-- MESSAGES PAGE (helpers only) -->
+<div class="page" id="messagesPage">
+  <div class="section container">
+    <div class="section-title">صندوق رسائل الطلبة</div>
+    <div class="section-subtitle">الرسائل الواردة من الطلبة تظهر هنا فور إرسالها</div>
+
+    <div style="display:grid;grid-template-columns:320px 1fr;gap:20px;min-height:400px" id="inboxLayout">
+      <div class="card" style="padding:0;overflow:hidden">
+        <div id="conversationList" style="max-height:600px;overflow-y:auto">
+          <div style="padding:30px;text-align:center;color:var(--gray-600)">لا توجد محادثات بعد</div>
+        </div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;padding:0;overflow:hidden">
+        <div id="threadHeader" style="padding:16px 20px;border-bottom:1px solid var(--gray-200,#eee);font-weight:700">اختر محادثة من القائمة</div>
+        <div id="threadMessages" class="chat-messages" style="flex:1;min-height:400px;position:static;width:auto;height:auto;box-shadow:none"></div>
+        <div class="chat-input" style="position:static;box-shadow:none;border-top:1px solid var(--gray-200,#eee)" id="threadInputBar">
+          <button onclick="sendHelperReply()">إرسال</button>
+          <input type="text" id="threadInput" placeholder="اكتب ردك..." onkeypress="if(event.key==='Enter')sendHelperReply()">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="chat-widget" id="chatWidget">
   <div class="chat-header" onclick="toggleChat()">
     💬 اطرح سؤالك
@@ -898,6 +921,48 @@ footer{
   <div><strong>إسألني</strong> © 2024 - منصة المعلومات الجامعية الشاملة</div>
   <div style="margin-top:10px;font-size:12px">بيانات من جامعة سوسة الرسمية - جميع الحقوق محفوظة</div>
 </footer>
+
+<!-- Firebase (for real-time cross-device messaging) -->
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script>
+  /*
+    ⚠️ SETUP REQUIRED — replace the values below with your own Firebase project's config
+    before the messaging feature will work.
+
+    How to get these values (free, ~5 minutes):
+    1. Go to https://console.firebase.google.com and create a project (or use an existing one).
+    2. In the project, click the "</>" (Web) icon to register a web app — no need to check
+       Firebase Hosting unless you want it.
+    3. Firebase will show you a firebaseConfig object — copy those values into the object below.
+    4. In the left sidebar go to Build → Firestore Database → Create database.
+       Start in "test mode" for now (or add security rules limiting reads/writes as needed).
+    That's it — once this config is filled in, messages sync in real time across every device.
+  */
+const firebaseConfig = {
+  apiKey: "AIzaSyBe6gXJiTIt4YheGGTliJvyuin6XfkxX8o",
+  authDomain: "es2lni-c49e0.firebaseapp.com",
+  projectId: "es2lni-c49e0",
+  storageBucket: "es2lni-c49e0.firebasestorage.app",
+  messagingSenderId: "491726162397",
+  appId: "1:491726162397:web:2a6fde6a96f8dee226ce34",
+  measurementId: "G-CSXGR8TZ4G"
+};
+
+  let db = null;
+  let firebaseReady = false;
+  try {
+    if (firebaseConfig.apiKey !== "AIzaSyBe6gXJiTIt4YheGGTliJvyuin6XfkxX8o") {
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
+      firebaseReady = true;
+    } else {
+      console.warn('⚠️ Firebase config not set — messaging will not work until you add your project keys (see comment above firebaseConfig).');
+    }
+  } catch (e) {
+    console.error('Firebase failed to initialize:', e);
+  }
+</script>
 
 <script>
 // Comprehensive Institution Data with Accurate Information
@@ -1163,7 +1228,6 @@ const careers = [
 
 let currentUser = null;
 let users = JSON.parse(localStorage.getItem('users')) || [];
-let messages = JSON.parse(localStorage.getItem('messages')) || [];
 
 // Navigation
 function showPageNav(event, pageName) {
@@ -1173,13 +1237,19 @@ function showPageNav(event, pageName) {
 }
 
 function showPage(pageName) {
+  if (pageName === 'messages' && (!currentUser || currentUser.type !== 'helper')) {
+    alert('هذه الصفحة مخصصة للمتطوعين المساعدين فقط');
+    return;
+  }
+
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(pageName + 'Page').classList.add('active');
-  
+
   if (pageName === 'institutions') loadInstitutions();
   if (pageName === 'programs') loadPrograms();
   if (pageName === 'careers') loadCareers();
-  
+  if (pageName === 'messages') loadHelperInbox();
+
   window.scrollTo(0, 0);
 }
 
@@ -1427,56 +1497,115 @@ function handleSignup() {
 
 function updateAuthBtn() {
   const btn = document.getElementById('authBtn');
+  const messagesNavLink = document.getElementById('messagesNavLink');
   if (currentUser) {
     btn.textContent = `${currentUser.name} (خروج)`;
     btn.onclick = () => {
       currentUser = null;
       localStorage.removeItem('currentUser');
+      stopAllMessageListeners();
       updateAuthBtn();
+      showPage('home');
     };
+    if (currentUser.type === 'helper') {
+      messagesNavLink.style.display = '';
+      watchUnreadTotal();
+    } else {
+      messagesNavLink.style.display = 'none';
+    }
+    watchOwnConversation();
   } else {
     btn.textContent = 'دخول';
     btn.onclick = showAuthModal;
+    messagesNavLink.style.display = 'none';
   }
 }
 
-// Chat
+// ============ Messaging (Firestore real-time, syncs across devices) ============
+const MESSAGES_COLLECTION = 'messages';
+let unsubscribers = {};
+let currentConversationId = null;
+let currentConversationStudentName = '';
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str == null ? '' : str;
+  return div.innerHTML;
+}
+
+function requireFirebase() {
+  if (!firebaseReady) {
+    alert('ميزة الرسائل غير مفعّلة بعد على هذا الموقع — يحتاج المسؤول لإضافة إعدادات Firebase (راجع التعليقات أعلى ملف الصفحة).');
+    return false;
+  }
+  return true;
+}
+
+// --- Student-facing chat widget ---
 function sendChatMessage() {
   if (!currentUser) {
     showAuthModal();
     return;
   }
-  
+  if (!requireFirebase()) return;
+
   const input = document.getElementById('chatInput');
   const text = input.value.trim();
   if (!text) return;
-  
-  const msg = { user: currentUser.name, text, time: new Date().toLocaleTimeString() };
-  messages.push(msg);
-  localStorage.setItem('messages', JSON.stringify(messages));
-  
-  addChatMessage(currentUser.name, text, true);
+
+  db.collection(MESSAGES_COLLECTION).add({
+    conversationId: currentUser.email,
+    studentName: currentUser.name,
+    studentEmail: currentUser.email,
+    sender: currentUser.type === 'helper' ? 'helper' : 'student',
+    senderName: currentUser.name,
+    text,
+    read: currentUser.type === 'helper',
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  }).catch(err => {
+    console.error('فشل إرسال الرسالة:', err);
+    alert('تعذّر إرسال الرسالة، تحقق من اتصالك بالإنترنت.');
+  });
+
   input.value = '';
-  
-  setTimeout(() => {
-    addChatMessage('المساعد', 'شكراً على سؤالك! سيرد عليك متطوع قريباً...', false);
-  }, 500);
 }
 
-function addChatMessage(name, text, isUser) {
-  const container = document.getElementById('chatMessages');
+function addChatMessageEl(container, name, text, isUser) {
   if (container.innerHTML.includes('ابدأ محادثتك')) {
     container.innerHTML = '';
   }
-  
   const div = document.createElement('div');
   div.className = `message ${isUser ? 'user' : 'helper'}`;
   div.innerHTML = `
-    <div class="message-avatar">${name[0]}</div>
-    <div class="message-bubble">${text}</div>
+    <div class="message-avatar">${escapeHtml((name || '?')[0])}</div>
+    <div class="message-bubble">${escapeHtml(text)}</div>
   `;
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
+}
+
+// Live-syncs the logged-in student's own conversation into the widget in real time
+function watchOwnConversation() {
+  if (unsubscribers.own) { unsubscribers.own(); unsubscribers.own = null; }
+  if (!firebaseReady || !currentUser) return;
+
+  unsubscribers.own = db.collection(MESSAGES_COLLECTION)
+    .where('conversationId', '==', currentUser.email)
+    .orderBy('createdAt')
+    .onSnapshot(snapshot => {
+      const container = document.getElementById('chatMessages');
+      if (!container) return;
+      if (snapshot.empty) {
+        container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--gray-600)">👋 ابدأ محادثتك</div>';
+        return;
+      }
+      container.innerHTML = '';
+      snapshot.forEach(doc => {
+        const m = doc.data();
+        const isUser = m.sender === (currentUser.type === 'helper' ? 'helper' : 'student');
+        addChatMessageEl(container, m.senderName, m.text, isUser);
+      });
+    }, err => console.error('watchOwnConversation error:', err));
 }
 
 function toggleChat() {
@@ -1486,6 +1615,137 @@ function toggleChat() {
 function toggleChatMinimize(e) {
   e.stopPropagation();
   toggleChat();
+}
+
+// --- Helper inbox: every student conversation, live, with unread counts ---
+function loadHelperInbox() {
+  if (!requireFirebase()) return;
+  if (unsubscribers.inboxList) return; // already subscribed (e.g. from watchUnreadTotal)
+
+  unsubscribers.inboxList = db.collection(MESSAGES_COLLECTION)
+    .orderBy('createdAt')
+    .onSnapshot(snapshot => {
+      const conversations = {};
+      snapshot.forEach(doc => {
+        const m = doc.data();
+        if (!m.conversationId) return;
+        if (!conversations[m.conversationId]) {
+          conversations[m.conversationId] = { studentName: m.studentName, lastText: '', unread: 0 };
+        }
+        conversations[m.conversationId].studentName = m.studentName;
+        conversations[m.conversationId].lastText = m.text;
+        if (m.sender === 'student' && !m.read) conversations[m.conversationId].unread++;
+      });
+      renderConversationList(conversations);
+    }, err => console.error('loadHelperInbox error:', err));
+}
+
+// Keeps the unread badge live even before the helper opens the inbox page
+function watchUnreadTotal() {
+  loadHelperInbox();
+}
+
+function renderConversationList(conversations) {
+  const list = document.getElementById('conversationList');
+  if (!list) { updateUnreadBadge(Object.values(conversations).reduce((s, c) => s + c.unread, 0)); return; }
+
+  const ids = Object.keys(conversations);
+  if (ids.length === 0) {
+    list.innerHTML = '<div style="padding:30px;text-align:center;color:var(--gray-600)">لا توجد محادثات بعد</div>';
+    updateUnreadBadge(0);
+    return;
+  }
+
+  let totalUnread = 0;
+  list.innerHTML = ids.map(id => {
+    const c = conversations[id];
+    totalUnread += c.unread;
+    return `
+      <div class="conversation-item" data-id="${escapeHtml(id)}" data-name="${escapeHtml(c.studentName || 'طالب')}"
+           style="padding:14px 18px;border-bottom:1px solid var(--gray-200,#eee);cursor:pointer;display:flex;justify-content:space-between;align-items:center;${id === currentConversationId ? 'background:var(--gray-50)' : ''}">
+        <div>
+          <div style="font-weight:700">${escapeHtml(c.studentName || 'طالب')}</div>
+          <div style="font-size:13px;color:var(--gray-600);max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escapeHtml(c.lastText || '')}</div>
+        </div>
+        ${c.unread > 0 ? `<span style="background:var(--danger,#e63946);color:#fff;border-radius:10px;padding:2px 8px;font-size:12px">${c.unread}</span>` : ''}
+      </div>`;
+  }).join('');
+
+  list.querySelectorAll('.conversation-item').forEach(el => {
+    el.addEventListener('click', () => openConversation(el.dataset.id, el.dataset.name));
+  });
+
+  updateUnreadBadge(totalUnread);
+}
+
+function updateUnreadBadge(count) {
+  const badge = document.getElementById('unreadBadge');
+  if (!badge) return;
+  if (count > 0) {
+    badge.textContent = count;
+    badge.style.display = '';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function openConversation(conversationId, studentName) {
+  currentConversationId = conversationId;
+  currentConversationStudentName = studentName || conversationId;
+  document.getElementById('threadHeader').textContent = 'محادثة مع ' + currentConversationStudentName;
+
+  if (unsubscribers.thread) unsubscribers.thread();
+  // Note: this query needs a Firestore composite index (conversationId + createdAt).
+  // If you see an index error in the browser console, click the link it provides
+  // to auto-create it — takes about a minute the first time.
+  unsubscribers.thread = db.collection(MESSAGES_COLLECTION)
+    .where('conversationId', '==', conversationId)
+    .orderBy('createdAt')
+    .onSnapshot(snapshot => {
+      const container = document.getElementById('threadMessages');
+      container.innerHTML = '';
+      snapshot.forEach(doc => {
+        const m = doc.data();
+        addChatMessageEl(container, m.senderName, m.text, m.sender === 'helper');
+        if (m.sender === 'student' && !m.read) {
+          doc.ref.update({ read: true }).catch(() => {});
+        }
+      });
+    }, err => console.error('openConversation error:', err));
+}
+
+function sendHelperReply() {
+  if (!currentConversationId) {
+    alert('اختر محادثة أولاً');
+    return;
+  }
+  if (!requireFirebase()) return;
+
+  const input = document.getElementById('threadInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  db.collection(MESSAGES_COLLECTION).add({
+    conversationId: currentConversationId,
+    studentName: currentConversationStudentName,
+    studentEmail: currentConversationId,
+    sender: 'helper',
+    senderName: currentUser.name,
+    text,
+    read: true,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  }).catch(err => {
+    console.error('فشل إرسال الرد:', err);
+    alert('تعذّر إرسال الرد، تحقق من اتصالك بالإنترنت.');
+  });
+
+  input.value = '';
+}
+
+function stopAllMessageListeners() {
+  Object.values(unsubscribers).forEach(unsub => { if (typeof unsub === 'function') unsub(); });
+  unsubscribers = {};
+  currentConversationId = null;
 }
 
 // Initialize
